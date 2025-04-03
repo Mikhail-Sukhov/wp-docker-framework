@@ -1,0 +1,136 @@
+/// Конвертирует строку в число.
+///
+/// @param {string|number} $value - Входное значение, которое может быть строкой или числом.
+/// @return {number} - Возвращает число, полученное из строки.
+/// @throws {log} - Выводит сообщение об ошибке, если входное значение не является строкой или числом.
+/// @example
+///   to_number('123'); // Возвращает 123
+///   to_number('-45.67'); // Возвращает -45.67
+///   to_number('10px'); // Возвращает 10px
+///
+@function to_number($value) {
+   // Проверяем, является ли входное значение числом.
+   @if type-of($value) == 'number' {
+      @return $value;
+   }
+   // Проверяем, является ли входное значение строкой.
+   @else if type-of($value) != 'string' {
+      @error '@function to_number. Значение(#{$value}) должно быть number или string';
+   }
+
+   // Инициализация переменных для результата и обработки десятичных знаков.
+   $result: 0;
+   $digits: 0;
+   // Проверка, является ли число отрицательным.
+   $minus: str-slice($value, 1, 1) == '-';
+   // Карта для сопоставления строковых цифр с числовыми значениями.
+   $numbers: (
+      '0': 0,
+      '1': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '6': 6,
+      '7': 7,
+      '8': 8,
+      '9': 9,
+   );
+
+   // Цикл по символам строки, начиная с индекса, зависящего от знака числа.
+   @for $i from if($minus, 2, 1) through str-length($value) {
+      $character: str-slice($value, $i, $i);
+
+      // Если символ не является цифрой или точкой или "/", предполагаем, что это единица измерения.
+      @if not(
+         index(map-keys($numbers), $character) or
+            $character ==
+            '.' or
+            $character ==
+            '/'
+      )
+      {
+         @return to-length(
+            if($minus, -$result, $result),
+            str-slice($value, $i)
+         );
+      }
+
+      // Обработка десятичной точки.
+      @if $character == '.' {
+         $digits: 1;
+      }
+
+      // Обработка "/"
+      @if $character == '/' {
+         @return $value;
+      }
+
+      // Обработка целой части числа.
+      @else if $digits == 0 {
+         $result: $result * 10 + map-get($numbers, $character);
+      }
+      // Обработка дробной части числа.
+      @else {
+         $digits: $digits * 10;
+         $result: $result + map-get($numbers, $character) / $digits;
+      }
+   }
+
+   // Возвращаем результат, учитывая знак числа.
+   @return if($minus, -$result, $result);
+}
+
+/// Преобразует число в значение с определенной единицей измерения.
+///
+/// @param {number} $value - Числовое значение.
+/// @param {string} $unit - Единица измерения (например, 'px', 'em', 'rem' и т.д.).
+/// @return {number} - Возвращает число с указанной единицей измерения.
+/// @throws {log} - Выводит сообщение об ошибке, если входное значение не является числом или единица измерения не поддерживается.
+/// @example
+///   to-length(10, 'px'); // Возвращает 10px
+///   to-length(2, 'em'); // Возвращает 2em
+///   to-length(50, '%'); // Возвращает 50%
+///
+@function to-length($value, $unit) {
+   // Проверяем, является ли входное значение числом.
+   @if type-of($value) != 'number' {
+      @error '@function to-length. Значение(#{$value}) должно быть number';
+   }
+
+   // Преобразуем число в значение с указанной единицей измерения.
+   @if $unit == 'px' {
+      @return $value * 1px;
+   } @else if $unit == 'em' {
+      @return $value * 1em;
+   } @else if $unit == 'rem' {
+      @return $value * 1rem;
+   } @else if $unit == '%' {
+      @return $value * 1%;
+   } @else if $unit == 'pt' {
+      @return $value * 1pt;
+   } @else if $unit == 'pc' {
+      @return $value * 1pc;
+   } @else if $unit == 'in' {
+      @return $value * 1in;
+   } @else if $unit == 'cm' {
+      @return $value * 1cm;
+   } @else if $unit == 'mm' {
+      @return $value * 1mm;
+   } @else if $unit == 'ex' {
+      @return $value * 1ex;
+   } @else if $unit == 'ch' {
+      @return $value * 1ch;
+   } @else if $unit == 'vw' {
+      @return $value * 1vw;
+   } @else if $unit == 'vh' {
+      @return $value * 1vh;
+   } @else if $unit == 'vmin' {
+      @return $value * 1vmin;
+   } @else if $unit == 'vmax' {
+      @return $value * 1vmax;
+   } @else {
+      // если единица измерения не найдена то возвращает значение
+      @return $unit;
+   }
+}

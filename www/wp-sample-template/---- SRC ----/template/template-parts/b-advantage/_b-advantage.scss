@@ -1,0 +1,72 @@
+
+// Наши преимущества
+// ---------------------------------------------------------------------------- //
+
+.b-advantage {
+   @include row(column);
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   padding: $gap;
+
+	@include home-fon();
+
+   &__title {
+      @include home-title();
+   }
+
+   &__row {
+      @include row;
+      @include res(
+         align-items l-b-center/
+         justify-content m-s-_space-evenly
+      );
+      width: 100%;
+      text-align: center;
+   }
+
+   &__cell {
+      @include col(l-b-2 m-3 s-6);
+      @include wrap;
+      background: c(cw, dark);
+      border: solid $gap*2 c(cw, base);
+      padding: $gap;
+      font-weight: normal;
+      color: c(cb, lighten);
+   }
+
+   &__icon {
+      font-size: 17px;
+      font-weight: normal;
+      margin: 20px;
+
+      @include res(l-b) {
+         font-size: 22px;
+      }
+
+      &--a { @include icon-before("\\e813", 0); }
+      &--b { @include icon-before("\\e867", 0); }
+      &--c { @include icon-before("\\e80d", 0); }
+      &--d { @include icon-before("\\e83a", 0); }
+      &--e { @include icon-before("\\f299", 0); }
+      &--f { @include icon-before("\\e80b", 0); }
+
+      &:before {
+         display: block;
+         color: c(first, darken);
+
+         @include res(l) {
+            font-size: 95px;
+         }
+         @include res(b) {
+            font-size: 75px;
+         }
+         @include res(m) {
+            font-size: 48px;
+         }
+         @include res(s) {
+            font-size: 38px;
+         }
+      }
+   }
+}

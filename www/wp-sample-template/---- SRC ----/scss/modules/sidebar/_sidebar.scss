@@ -1,0 +1,225 @@
+
+/*******************************************************************************************************************************************\
+					 ||||   ||||  ||  ||   |||   |||||   ||||  |||||
+					||  || ||  || ||  ||  || ||  ||     ||  || ||  ||
+					||     |||||| || |||  || ||  |||||  |||||| ||||||
+					||  || ||  || ||| || ||||||| ||  || ||  || ||
+					 ||||  ||  || ||  || |     | |||||  ||  || ||
+\*******************************************************************************************************************************************/
+
+
+// Отдельный sidebar
+// ---------------------------------------------------------------------------- //
+
+.sidebar {
+	margin: 0 0 $gap*2 0;
+
+	// wrap не для блоков gutenberg
+	&:not(.widget_block) {
+		@include wrap;
+	}
+
+	// стили для блоков gutenberg
+	.wp-block-group {
+		@include wrap;
+		padding: $gap;
+
+		// Для первого заголовка
+		> * .wp-block-heading:first-child {
+			@include title;
+
+			& {margin: (-$gap) (-$gap) $gap (-$gap);}
+
+			a {
+				padding: 0;
+			}
+		}
+
+		// Для следующих заголовков
+		> * .wp-block-heading:not(:first-child) {
+			font-family: $heading-font;
+			font-weight: inherit;
+			padding: $gap 0;
+			margin: 0;
+			font-size: 21px;
+			color: c(cb, light);
+
+			a {
+				padding: 0;
+			}
+		}
+
+		ol, ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		input {
+			width: 100%;
+		}
+
+	}
+
+	// Для заголовка стандартного блока виджета
+	&__title {
+		@include title;
+
+		a {
+			padding: 0;
+		}
+
+	}
+
+	// Для стандартного контента виджета
+	&__box {
+		padding: $gap;
+	}
+
+	:where(ul:not(.menu):not(.menu__sub)) {
+		li {
+			display: flow-root;
+		}
+	}
+}
+
+
+// Совмещённый сайдбар
+// ---------------------------------------------------------------------------- //
+
+.sidebar--one {
+		margin: 0 0 $gap*2 0;
+		padding: $gap;
+		@include wrap;
+
+		// Стили для первого заголовка
+		&__box:first-child {
+			.sidebar--one__title {
+				@include title;
+				
+				& {margin: (-$gap) (-$gap) 0 (-$gap);}
+				
+				
+				a {
+					padding: 0;
+				}
+			}
+		}
+
+		// стили для последующих заголовков
+		&__box:not(:first-child) {
+			.sidebar--one__title {
+					padding: $gap 0;
+					margin: 0;
+					font-size: 21px;
+					color: c(cb, light);
+
+					a {
+						padding: 0;
+					}
+				}
+
+			// стили для всех кроме первого и второго
+			&:not(:nth-child(2)) .sidebar--one__title {
+				margin: $gap 0 0 0;
+				border-top: solid c(cw, darken) 1px;
+			}
+		}
+
+	&:empty {
+		display: none;
+	}
+}
+
+
+
+/*******************************************************************************************************************************************\
+					 ||||  |||||| ||  ||  ||||  ||  || ||  ||       ||||   ||||  ||  ||   |||   |||||   ||||  |||||   ||||
+					||  || ||  || ||  || ||  || || ||  ||  ||      ||  || ||  || ||  ||  || ||  ||     ||  || ||  || ||  ||
+					||     ||  || || ||| ||     ||||   || |||      ||     |||||| || |||  || ||  |||||  |||||| |||||| ||||||
+					||  || ||  || ||| || ||  || || ||  ||| ||      ||  || ||  || ||| || ||||||| ||  || ||  || ||     ||  ||
+					 ||||  ||  || ||  ||  ||||  ||  || ||  ||       ||||  ||  || ||  || |     | |||||  ||  || ||     ||  ||
+\*******************************************************************************************************************************************/
+
+
+// Отдельный sidebar
+// ---------------------------------------------------------------------------- //
+
+:where(.sidebar) {
+
+	ul:not(.menu):not(.menu__sub) {
+		margin: 0;
+		padding: 0;
+		font-size: $font-size;
+		line-height: $line-height;
+
+	
+		li {
+			list-style: none;
+
+			:where(&:not(:last-of-type)) {
+				border-bottom: solid c(cw, darken) 1px;
+			}
+
+			a {
+				padding: .2rem 0;
+				text-decoration: none;
+			}
+		}
+
+		ul {
+			border-top: solid c(cw, darken) 1px;
+			
+			li {
+				padding: 0 0 0 1rem;
+
+				:where(&:not(:last-of-type)) {
+					border-bottom: solid c(cw, darken) 1px;
+				}
+			}
+		}
+
+		a {
+			:where(&:not([class]):before) {
+				margin-right: 8px;
+				@include icon(\e814);
+			}
+		}
+	}
+}
+
+
+// Совмещённый сайдбар
+// ---------------------------------------------------------------------------- //
+
+:where(.sidebar--one)  {
+
+	:where(ul:not(.menu):not(.menu__sub)) {
+		margin: 0;
+		padding: 0;
+		font-size: $font-size;
+		line-height: $line-height;
+
+		li {
+			list-style: none;
+
+			:where(&:not(:last-child)) {
+				border-bottom: solid c(cw, dark) 1px;
+			}
+
+			a {
+				padding: 4px 0;
+				text-decoration: none;
+			}
+		}
+
+		ul {
+			li {
+				padding: 0 0 0 20px;
+
+				:where(&:not(:last-child)) {
+					border-top: solid c(cw, dark) 1px;
+				}
+			}
+		}
+	}
+}

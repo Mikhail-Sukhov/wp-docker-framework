@@ -1,0 +1,179 @@
+// ---------------------------------------------------------------------------- //
+// Кнопки
+// ---------------------------------------------------------------------------- //
+
+// Базовые стили для всех кнопок
+@mixin btn-base {
+	font-family: $heading-font;
+	text-align: center;
+	display: inline-block;
+	margin-top: $gap;
+	margin-bottom: $gap;
+	padding: $gap*0.5;
+	outline: 0;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: $rad;
+	text-shadow: -1px -1px rgba(0,0,0,0.45);
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+
+// Стиль кнопки по умолчанию
+@mixin btn-def {
+	border: solid c(first, dark) 1.5px;
+	background: c(first, base);
+	color: c(cw, base);
+
+	&:before, &:after {
+		color: c(cw, dark);
+	}
+
+	&:hover {
+		border: solid c(second, dark) 1.5px;
+		background: c(second, base);
+		color: c(cw, base);
+	}
+
+	&:active {
+		border: solid c(second, dark) 1.5px;
+		background: c(second, light);
+	}
+}
+
+
+// Стиль кнопки по умолчанию(реверс)
+@mixin btn-get {
+	border: solid c(second, dark) 1.5px;
+	background: c(second, base);
+	color: c(cw, base);
+
+	&:before, &:after {
+		color: c(cw, dark);
+	}
+
+	&:hover {
+		border: solid c(first, dark) 1.5px;
+		background: c(first, base);
+		color: c(cw, base);
+	}
+
+	&:active {
+		border: solid c(first, dark) 1.5px;
+		background: c(first, light);
+	}
+}
+
+
+// Призрачная кнопка
+@mixin btn-gost {
+	border: solid c(first, base) 1.5px;
+	color: c(first, light);
+	background: inherit;
+	text-shadow: none;
+
+	&:before, &:after {
+		color: c(cw, light);
+	}
+
+	&:hover {
+		border: solid c(first, darken) 1.5px;
+		color: c(first, dark);
+	}
+
+	&:active {
+		border: solid c(first, base) 1.5px;
+		color: c(first, lighten);
+	}
+}
+
+
+// Валидная кнопка
+@mixin btn-valid {
+	border: solid c(valid, dark) 1.5px;
+	background: c(valid, base);
+	color: c(cw, base);
+
+	&:before, &:after {
+		color: c(cw, dark);
+	}
+
+	&:hover {
+		border: solid c(valid, darken) 1.5px;
+		background: c(valid, dark);
+		color: c(cw, base);
+	}
+
+	&:active {
+		border: solid c(valid, base) 1.5px;
+		background: c(valid, light);
+	}
+}
+
+
+
+// Инвалидная кнопка
+@mixin btn-invalid {
+	border: solid c(invalid, dark) 1.5px;
+	background: c(invalid, base);
+	color: c(cw, base);
+
+	&:before, &:after {
+		color: c(cw, dark);
+	}
+
+	&:hover {
+		border: solid c(invalid, darken) 1.5px;
+		background: c(invalid, dark);
+		color: c(cw, base);
+	}
+
+	&:active {
+		border: solid c(invalid, base) 1.5px;
+		background: c(invalid, light);
+	}
+}
+
+
+
+// ---------------------------------------------------------------------------- //
+// Миксины кнопок
+// ---------------------------------------------------------------------------- //
+
+$btn-size: (
+	small: 16px,
+	medium: 19px,
+	big:  28px
+);
+
+
+// mixin btn-style
+@mixin btn-style( $style: def ) {
+	@if $style == def     { @include btn-def; }
+	@if $style == get     { @include btn-get; }
+	@if $style == gost    { @include btn-gost; }
+	@if $style == valid   { @include btn-valid; }
+	@if $style == invalid { @include btn-invalid; }
+}
+
+
+// mixin btn
+@mixin btn( $style: def, $size: medium ) {
+	
+	@include btn-base;
+	@include btn-style( $style );
+
+	@if map-has-key( $btn-size, $size ) {
+		font-size: map-get( $btn-size, $size );
+		line-height: $line-height;
+	}
+
+	@else {
+		font-size: $size;
+		line-height: $line-height;
+	}
+
+}

@@ -1,0 +1,57 @@
+
+// Контент
+// ---------------------------------------------------------------------------- //
+
+$colonsWidth: 20%;
+
+.content {
+	margin-top: $content-top-margin;
+	padding-top: $gap;
+
+	&__row {
+		display: flex;
+		position: relative;
+		z-index: 999;
+
+		&--landing {
+			flex-direction: column
+		}
+	}
+
+	&__cell {
+		position: relative;
+		@include row(column);
+
+		&--left {
+			padding: $gap $gap*2 0 0;
+			flex: 0 0 $colonsWidth;
+
+			@include res(display b-s-none);
+		}
+
+		&--center {
+			padding: 0 0 $gap 0;
+			flex: 1 1 100%-$colonsWidth*2;
+
+			@include res(b-s) {
+				padding-left: $gap;
+				padding-right: $gap;
+			};
+		}
+
+		&--right {
+			padding: $gap 0 0 $gap*2;
+			flex: 0 0 $colonsWidth;
+
+			@include res(display b-s-none);
+		}
+	}
+
+		// &__sidebar {
+		// 	position: sticky;
+		// 	top: ($topmenu-height + $gap*2);
+
+		// 	// &--left {}
+		// 	// &--right {}
+		// }
+}

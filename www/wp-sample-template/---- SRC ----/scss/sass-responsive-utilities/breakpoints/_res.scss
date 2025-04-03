@@ -1,0 +1,95 @@
+/// Миксин для применения стилей на основе брейкпоинтов.
+///
+/// @param {String|List} $input - Свойство CSS или список свойств и значений.
+/// @param {Map} $map [null] - Карта значений для брейкпоинтов.
+///
+/// @example
+///   @include res(padding, (l: 10px, m: 20px, s: 30px));
+///   @include res(padding, l-10px m-20px s-30px);
+///   @include res("padding l-10px m-20px s-30px");
+///   @include res(padding l-10px m-20px s-30px);
+///
+///   @include res(
+///     padding l-10px m-20px s-30px /
+///     margin l-10px m-20px s-30px /
+///     font-size l-b-22px m-s-10px
+///   );
+///
+/// @requires {Mixin} res-style - Логика обработки входных данных.
+/// @requires {Function} str-split - Функция для разделения строки.
+/// 
+@mixin res($input, $map: null) {
+   // Если находит разделитель '/'
+   @if length(str-split($input + '', '/')) > 1 {
+      // Делит по разделителю '/' на отдельные списки
+      // и проходит итерацию res-style по каждому
+      @each $stroke in str-split($input + '', '/') {
+         @include res-style(
+            // Удаляет кавычки т.к. str-split возвращает значение в кавычках
+            unquote($stroke)
+         );
+      }
+   }
+   // если $input делится по '-', не делится по ' ' и $map не передаётся, или $input есть в $respond-keys
+   // значить пользователь хочет использовать res как res, например: res(l-b)
+   @else if
+      length(str-split($input + '', '-')) > 1
+      and
+      length(str-split($input + '', ' ')) == 1
+      and
+      type-of($map) != 'map'
+      or
+      index($respond-keys, $input) != null
+   {
+      @include breakpoints($input) {
+         @content;
+      }
+   }
+   // в остальных случаях ожидается одиночный список с адаптивными значениями
+   // например: res(padding l-b-10-0-5-10 m-0-10-0-15 s-10-0-15-0);
+   @else {
+      @include res-style(
+         // Удаляет кавычки если input 'string'
+         if(type-of($input) == 'string', unquote($input), $input),
+         $map
+      );
+   }
+}
+
+
+/// Логика обработки входных данных для миксина res.
+///
+/// @param {String|List} $input - Свойство CSS или список свойств и значений.
+/// @param {Map} $map [null] - Карта значений для брейкпоинтов.
+///
+/// @example
+///   @include res-style(padding, (l: 10px, m: 20px, s: 30px));
+///   @include res-style(padding, l-10px m-20px s-30px);
+///   @include res-style("padding l-10px m-20px s-30px");
+///   @include res-style(padding l-10px m-20px s-30px);
+///
+/// @requires {Function} str-split - Функция для разделения строки.
+/// @requires {Function} str-map - Функция для преобразования строки в карту.
+/// @requires {Function} to-unit - Функция для преобразования значения в единицу измерения.
+///
+@mixin res-style($input, $map: null) {
+   $input: if(type-of($input) == 'string', str-split($input, ' '), $input);
+
+   // Если есть map, то $property = $input, иначе 1-й элемент списка
+   $property: if($map, $input, nth($input, 1));
+   // Если есть map, то $arg = map, иначе список без 1-го элемента
+   $arg: if($map, $map, set-nth($input, index($input, $property), null));
+
+   // Если $arg не карта, то преобразовать в карту
+   @if type-of($arg) != 'map' {
+      $arg: str-map($arg + '');
+   }
+
+   // Обрабатываем каждый ключ и значение в карте
+   @each $key, $value in $arg {
+      @include breakpoints($key) {
+         #{$property}: to-unit($value);
+      }
+   }
+}
+

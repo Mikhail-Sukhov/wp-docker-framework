@@ -1,0 +1,45 @@
+/// Конвертирует безразмерные значения в списке или строке в указанную единицу измерения.
+///
+/// @example scss
+///   $list: 10, 20px, 30, 40em;
+///   $result-list: to-unit($list, 'px'); // Вывод: 10px, 20px, 30px, 40em
+///
+/// @example scss
+///   $string: '50';
+///   $result-string: to-unit($string, 'rem'); // Вывод: 50rem
+///
+/// @param {List|String} $input - Входной список или строка, содержащие значения для преобразования.
+/// @param {String} $unit - Единица измерения, которую нужно добавить к безразмерным значениям.
+///
+/// @return {List|String} - Возвращает список, если входной параметр был списком, или строку, если входной параметр был строкой.
+///
+@function to-unit($input, $unit: px) {
+   // Проверяем, является ли входной параметр списком
+   @if type-of($input) == 'list' {
+      $result: ();
+      @each $item in $input {
+         @if type-of($item) == 'number' and unitless($item) {
+            $result: append($result, $item + $unit);
+         } @else if type-of($item) == 'string' {
+            $result: append($result, unquote($item));
+         } @else {
+            $result: append($result, $item);
+         }
+      }
+      @return $result;
+   }
+
+   // Проверяем, является ли входной параметр строкой
+   @else if type-of($input) == 'string' {
+      @if type-of($input) == 'number' and unitless($input) {
+         @return $input + $unit;
+      } @else {
+         @return $input;
+      }
+   }
+
+   // Если входной параметр не является ни списком, ни строкой, возвращаем его как есть
+   @else {
+      @return $input;
+   }
+}

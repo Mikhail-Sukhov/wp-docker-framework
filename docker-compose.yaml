@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  lemp:
+    build:
+      context: .
+      dockerfile: lemp.Dockerfile
+    container_name: lemp
+    restart: unless-stopped
+    volumes:
+      - ./www:/var/www/html/localhost/htdocs
+      - ./nginx/sites:/etc/nginx/http.d
+      - ./nginx/log:/var/log/nginx
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      - ./php/config/php.ini:/etc/php83/php.ini
+    ports:
+      - "80:80"
+      - "5000:5000"

@@ -1,0 +1,13 @@
+@use 'sass:math';
+
+/// Преобразует пиксели в rem.
+///
+/// @param {Number} $px - Значение в пикселях.
+/// @return {Number} Значение в rem.
+/// @example
+///   px-to-rem(16px); // Возвращает 1rem
+///
+@function px-to-rem($px) {
+   $rems: math.div($px, 16px) * 1rem;
+   @return $rems;
+}

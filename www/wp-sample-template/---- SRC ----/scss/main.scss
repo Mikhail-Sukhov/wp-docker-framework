@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/// Импорт основных стилей темы.
+///
+/// @requires {File} theme - Файл с стилями темы и переменными.
+/// @requires {File} sass-responsive-utilities - Файл с утилитами.
+/// @requires {File} base - Файл с базовыми стилями.
+/// @requires {File} layout - Файл с стилями макета.
+/// @requires {File} states - Файл со стилями состояний.
+/// @requires {File} modules - Файл с модульными стилями(menu, post, base widgets).
+/// 
+@import "theme";
+@import "sass-responsive-utilities";
+@import "base";
+@import "layout";
+@import "states";
+@import "modules";
+
+/// Импорт стилей виджетов.
+///
+/// @requires {File} ../template/widget/_index.scss - Файл с импортами стилей виджетов
+/// 
+@import "../template/widget";
+
+/// Импорт стилей интегрируемых компонентов.
+///
+/// @requires {File} ../template/inc_index.scss - Файл с импортами стилей интегрируемых компонентов
+/// 
+@import "../template/inc";
+
+/// Импорт стилей частей лендингов.
+///
+/// @requires {File} ../template/template-parts/_index.scss - Файл с импортами стилей частей лендингов
+/// 
+@import "../template/template-parts";
+
+/// Импорт стилей glidejs.
+///
+/// @requires {File} ../libs/@glidejs/glide/dist/css/glide.core.css - Основные стили glidejs.
+/// @requires {File} ../libs/@glidejs/glide/dist/css/glide.theme.css - Тематические стили glidejs.
+/// 
+@import "../libs/@glidejs/glide/dist/css/glide.core";
+@import "../libs/@glidejs/glide/dist/css/glide.theme";
+
+/// Импорт стилей sal.js.
+///
+/// @requires {File} ../libs/sal.js/dist/sal.css - Стили sal.js для анимации.
+/// 
+/// @import "../libs/sal.js/dist/sal";
+
+/// Импорт стилей venobox.
+///
+/// @requires {File} ../libs/venobox/dist/venobox.min.css - Минифицированные стили venobox для всплывающих окон.
+/// 
+@import "../libs/venobox/dist/venobox.min";
+
+/// Импорт базовых стилей иконочного шрифта.
+///
+/// @requires {File} ../font/basic/css/basic-codes.css - Базовые стили иконочного шрифта.
+/// 
+@import "../font/basic/css/basic-codes";

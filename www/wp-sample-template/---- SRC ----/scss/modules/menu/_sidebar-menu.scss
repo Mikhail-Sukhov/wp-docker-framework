@@ -1,0 +1,125 @@
+
+// Меню сайдбара
+// ---------------------------------------------------------------------------- //
+
+.sidebar,
+.sidebar--one {
+	ul.menu {
+		position: relative;
+		padding: 0;
+		margin: 0;
+
+		li {
+			list-style: none;
+			position: relative;
+
+			&:not(:last-child) {
+				border-bottom: solid c(cw, darken) 1px;
+			}
+
+			// &.current > a {}
+
+			// Эффект при раскрытии подменю
+			&.parent:hover > ul {
+				visibility: visible;
+				opacity: 1;
+			}
+
+			// Ссылки
+			a {
+				padding: 5px 10px;
+				display: block;
+				font-size: 20px;
+				text-decoration: none;
+
+				// убирает базовую иконку есть есть установленная классом меню
+				&:has(span)::before {
+					content: '';
+					margin: 0;
+				}
+
+				// базовая иконка
+				@include icon-before("\\e81b");
+
+				// &:hover {}
+			}
+
+			// Родительский маркер
+			&.parent > a {
+				@include icon-after("\\e851");
+
+				&:hover:after {
+					color: red;
+				}
+			}
+
+			// 2 уровень
+			ul {
+				visibility: hidden;
+				opacity: 0;
+				white-space: nowrap;
+
+				// Эффект при раскрытии подменю
+				padding: 0;
+				margin: 0;
+				z-index: 1000;
+				background: transparent;
+				position: absolute;
+				top: 0;
+				border-top: 0;
+
+				@include mix(".content__cell--left") {
+					border-left: solid 10px transparent;
+					left: 100%;
+				}
+
+				@include mix(".content__cell--right") {
+					border-right: solid 10px transparent;
+					right: 100%;
+				}
+
+				// уголок ul ul
+				&:before {
+					content: '';
+					display: inline-block;
+					border: 7px solid transparent;
+					position: absolute;
+					top: 10px;
+
+					@include mix(".content__cell--left") {
+						border-right: 7px solid c(first, darken);
+						left: -14px;
+					}
+
+					@include mix(".content__cell--right") {
+						border-left: 7px solid c(first, darken);
+						right: -14px;
+					}
+				}
+
+				>li {
+					background: c(cw,base);
+					border-left:  solid c(first, darken) 1px;
+					border-right: solid c(first, darken) 1px;
+
+					// Закругленные углы
+					&:first-child {
+						border-radius: $rad $rad 0 0;
+						border-top: solid c(first, darken) 1px;
+						>a {
+							border-radius: $rad $rad 0 0;
+						}
+					}
+
+					&:last-child {
+						border-radius: 0 0 $rad $rad;
+						border-bottom: solid c(first, darken) 1px;
+						>a {
+							border-radius: 0 0 $rad $rad;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,23 @@
+
+// Kama_Breadcrumb
+// ---------------------------------------------------------------------------- //
+
+.kama_breadcrumbs {
+		@include wrap;
+		clear: both;
+		padding: $gap;
+		margin: $gap 0;
+		font-size: 1.05rem;
+
+	span {
+		&:first-child {
+			a {
+				@include icon-before("\\e863");
+			}
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
+}

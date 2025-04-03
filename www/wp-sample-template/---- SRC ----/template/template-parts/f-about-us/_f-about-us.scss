@@ -1,0 +1,41 @@
+
+// О нас
+// ---------------------------------------------------------------------------- //
+
+.f-about-us {
+   //height: 100vh;
+   width: 100%;
+   position: relative;
+   overflow: hidden;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   &__cont {
+      position: relative;
+      text-align: center;
+
+      @include res(l-m) {
+         padding: 15vh 15vw;
+      }
+      @include res(s) {
+         padding: 7vh 8vw;
+      }
+   }
+
+      &__tittle {
+         text-align: center;
+         color: c(cw, dark);
+         font-size: clamp(1.5rem, 3.3vw, 4rem);
+         margin: 0 0 $gap*5 0;
+      }
+
+      &__text {
+         color: c(cw, base);
+         font-size: clamp(1.1rem, 1.55vw, 2.5rem);
+         line-height: clamp(1.1rem,3.6vh,2.2rem);
+         font-weight: 500;
+         margin: 0;
+      }
+}

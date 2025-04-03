@@ -1,0 +1,63 @@
+.sticky-contact {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   z-index: 99999;
+
+   &__main-button {
+      position: relative;
+      z-index: 9999;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: c(cw, base);
+      border: solid 2px  c(first, darken);
+      color: #525f63;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 34px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0.25rem 0.55rem 0 rgba(0, 0, 0, 0.45);
+      transition: transform 0.3s ease;
+   }
+
+   &__buttons {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+
+      &--active {
+         opacity: 1;
+         pointer-events: auto;
+      }
+   }
+
+   &__button {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: c(cw, base);
+      border: solid 2px  c(first, darken);
+      color: #525f63;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 34px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0.25rem 0.55rem 0 rgba(0, 0, 0, 0.45);
+      transition: transform 0.3s ease;
+      margin-top: -70px;
+      text-decoration: none;
+   }
+
+   &__icon {
+      color: c(first, dark);
+   }
+}

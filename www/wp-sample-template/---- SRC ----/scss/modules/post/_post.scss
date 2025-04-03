@@ -1,0 +1,146 @@
+
+// Посты
+// ---------------------------------------------------------------------------- //
+
+.post {
+	@include wrap;
+	position: relative;
+
+	& &__edit {
+		position: absolute;
+		right: -16px;
+		top: -16px;
+		padding: 10px;
+		border-radius: 100%;
+		text-decoration: none;
+		height: 20px;
+		width: 20px;
+		text-align: center;
+		line-height: 1.1;
+		background: c(second, base);
+		box-sizing: content-box;
+
+
+		&:before {
+			@include icon("\\e874");
+			color: c(cw, base);
+		}
+
+		&:hover {
+			background: c(second, light);
+			color: c(cw, base);
+		}
+	}
+
+		// &__header {}
+
+			&__title {
+				margin: 0;
+				@include title();
+				@include title-post();
+
+				// &-href {}
+			}
+
+		&__content {
+			padding-bottom: $gap;
+		}
+
+			&__text {
+				padding: 0 $gap;
+			}
+
+				& &__readmore {
+					@include btn(def, medium);
+				}
+
+
+
+	&--col-1 {
+		@include res(l-m) {
+			.post__content {
+				display: flex;
+			}
+
+			.post__image {
+				flex: 0 1 30%;
+			}
+
+			.post__text--img {
+				flex: 1 0 70%;
+			}
+		}
+
+
+		//Все четные элементы
+		&:nth-child(odd) {
+			@include res(l-m) {
+				.post__image {
+					order: 1;
+					margin: $gap*2 0 0 $gap*2;
+				}
+
+				.post__text--img {
+					order: 2;
+				}
+			}
+		}
+
+		//Все нечетные элементы
+		&:nth-child(even) {
+			@include res(l-m) {
+				.post__image {
+					order: 2;
+					margin: $gap*2 $gap*2 0 0;
+				}
+
+				.post__text--img {
+					order: 1;
+				}
+			}
+		}
+	}
+
+	&--col-2 {
+		@include res(l-b) {
+			.post__content {
+				display: flex;
+			}
+
+			.post__image {
+				margin: $gap*2 0 0 $gap*2;
+				flex: 0 1 35%;
+			}
+
+			.post__text--img {
+				flex: 1 0 65%;
+			}
+
+		}
+	}
+
+	&--col-1,
+	&--col-2 {
+		.post__image img {
+			border-radius: $gap;
+		}
+	}
+
+	&--col-1,
+	&--col-2,
+	&--col-3,
+	&--col-4 {
+		.post__image {
+			img {
+				width: 100%;
+				max-width: 100%;
+				height: auto;
+			}
+		}
+	}
+
+	&--table {
+		flex: 0 0 100%;
+	}
+
+}

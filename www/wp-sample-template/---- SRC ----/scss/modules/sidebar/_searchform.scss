@@ -1,0 +1,24 @@
+
+// Форма поиска
+// ---------------------------------------------------------------------------- //
+
+.searchform {
+
+	// &__form {}
+
+		&__input {
+			@include input-wrap;
+		}
+
+			&__text {
+            @include input;
+            border-right: solid c(cw, darken) 1px;
+
+			}
+
+			&__btn {
+            @include input-icon;
+
+            @include icon-before("\\e88d", 0);
+			}
+}

@@ -1,0 +1,39 @@
+
+main {
+	margin-left:  -$gap;
+	margin-right: -$gap;
+	@include row;
+
+	&:has(.post--singular) {
+		@include res(l-b) {
+			height: 100%;
+		}
+	}
+}
+
+// Колонки постов
+// ---------------------------------------------------------------------------- //
+
+.post {
+
+	&--col-1,
+	&--singular {
+		@include col(12);
+	}
+
+
+	&--col-2 {
+		@include col(l-m-6 s-12);
+	}
+
+
+	&--col-3 {
+		@include col(l-b-4 m-6 s-12);
+	}
+
+
+	&--col-4 {
+		@include col(l-3 m-6 s-12);
+	}
+
+}

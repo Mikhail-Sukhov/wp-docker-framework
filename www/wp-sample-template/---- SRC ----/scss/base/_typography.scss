@@ -1,0 +1,144 @@
+
+body {
+	font-family: $base-font;
+
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/*******************************************************************************************************************************************\
+					|||||   ||||  ||||||  ||||     |||  ||||  |||||  ||  || ||  ||
+					    || ||  || ||     ||  ||   | || ||  || ||  || || ||  ||  ||
+					  |||  |||||| ||     ||  ||  |  || ||  || |||||  ||||   || |||
+					    || ||  || ||     ||  || ||  || ||  || ||  || || ||  ||| ||
+					|||||  ||  || ||      ||||  ||  ||  ||||  |||||  ||  || ||  ||
+\*******************************************************************************************************************************************/
+
+
+// Пустые списки
+$h-color-list: ();
+$h-font-size-list: ();
+
+// процент снижения контрастности h1
+// яркость снижается с каждым новым h
+$h-percent-color: 0%;
+
+// Генерация цветов и шрифтов заголовков
+@for $i from 1 through 6 {
+
+	// Генерация color
+	$h-color-list: join( $h-color-list, lighten( $h-color, $h-percent-color ), comma );
+
+	// Уменьшение яркости цвета для следующего h
+	$h-percent-color: $h-percent-color + $h-color-step;
+
+	// Генерация font-size
+	$h-font-size-list: join( $h-font-size-list, $h-font-size, comma );
+
+	// Уменьшение размера шрифта для следующего h
+	$h-font-size: $h-font-size - $h-font-size-step;
+}
+
+
+main {
+
+	@for $i from 1 through 6 {
+		h#{$i} {
+			font-family: $heading-font;
+			margin-top: $text-gap*0.5;
+			margin-bottom: 0;
+			color: nth( $h-color-list, $i );
+			font-size: nth( $h-font-size-list, $i );
+			line-height: $line-height;
+		}
+	}
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-weight: bolder;
+	}
+}
+
+/*******************************************************************************************************************************************\
+					 ||||   ||||  ||   ||    ||| ||  || ||  ||     ||  ||     |||||| |||||| ||  ||  ||||  ||||||
+					||  || ||  || ||   ||   | || || ||  ||  ||     ||  ||       ||   ||     || ||  ||  ||   ||
+					||     ||     |||| ||  |  || ||||   || |||     || |||       ||   ||||   ||||   ||       ||
+					||  || ||  || || | || ||  || || ||  ||| ||     ||| ||       ||   ||     || ||  ||  ||   ||
+					 ||||   ||||  |||| || ||  || ||  || ||  ||     ||  ||       ||   |||||| ||  ||  ||||    ||
+\*******************************************************************************************************************************************/
+
+:where(.content) {
+
+	a {
+		text-decoration: none;
+	}
+
+	:before, :after {
+		transition: inherit;
+	}
+
+	p {
+		color: $text-color;
+		margin: $text-gap 0 0 0;
+
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+}
+
+
+/*******************************************************************************************************************************************\
+					||   |  ||||  |||||| ||  ||
+					||| || ||  ||   ||   ||| ||
+					|| | | ||||||   ||   || |||
+					||   | ||  ||   ||   ||  ||
+					||   | ||  || |||||| ||  ||
+\*******************************************************************************************************************************************/
+
+:where(main) {
+
+	.post__text {
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	p {
+		display: flow-root;
+	}
+
+	ol, ul {
+		margin: $text-gap 0;
+	}
+
+	table {
+		width: 100%;
+		border-spacing: 0;
+		border-collapse: collapse;
+		word-wrap: break-word;
+		outline: solid 2px c(cb, base);
+		font-weight: normal;
+		margin: $text-gap*2 0;
+	}
+
+	tr, td, th {
+		padding: $gap;
+		outline: solid 1px c(cb, base);
+		vertical-align: middle;
+		text-align: center;
+	}
+
+		th {
+			text-align: center;
+			font-weight: bolder;
+		}
+
+		tr, td, th {
+			a {
+				text-decoration: none;
+			}
+		}
+}

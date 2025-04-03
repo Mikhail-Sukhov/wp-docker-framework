@@ -1,0 +1,58 @@
+/// Стили для колонок.
+///
+/// @param {String|Number} $arg - Ширина колонки ('auto' или число).
+/// @param {Number} $gap [$gap-setting] - Значение отступа.
+/// @example
+///   @include col-style('auto');
+///   @include col-style(6);
+/// 
+@mixin col-style($arg, $gap: $gap-setting) {
+   // Если ширина колонки равна 'auto', устанавливаем flex-grow и flex-shrink
+   @if $arg == auto {
+      flex: 1 1 auto;
+   }
+   // В противном случае, устанавливаем ширину колонки с учетом отступов
+   @else {
+      @if $gap > 0 {
+         flex: 1 1 calc(#{col-width($arg)} - #{$gap * 2});
+         margin: $gap;
+      }
+      // Если отступ равен 0, устанавливаем ширину колонки без учета отступов
+      @else {
+         flex: 1 1 col-width($arg);
+      }
+   }
+}
+
+/// Колонка для выбранных разрешений.
+///
+/// @param {String|Map} $arg - Ширина колонки или карта настроек для разных брейкпоинтов.
+/// @param {Number} $gap [$gap-setting] - Значение отступа.
+/// @example
+///   @include col((l: 4, b-m: '6/20', 5px min: 12));
+///   @include col(l-4 b-m-6 s-12);
+///   @include col('l-4 b-m-6 s-12');
+///   @include col(4);
+///   @include col('4');
+///   @include col('4/15');
+///   @include col(200px);
+/// 
+@mixin col($arg, $gap: $gap) {
+   // Если аргумент не является картой и содержит только один элемент, применяем стили для колонки
+   @if type-of($arg) != 'map' and length(str-split($arg + '', '-')) == 1 {
+      @include col-style($arg, $gap);
+   }
+   // В противном случае, обрабатываем аргумент как карту или преобразуем строку в карту
+   @else {
+      @if type-of($arg) != 'map' {
+         $arg: str-map($arg);
+      }
+
+      // Применяем стили для каждого ключа и значения в карте
+      @each $key, $value in $arg {
+         @include res($key) {
+            @include col-style($value + '', $gap);
+         }
+      }
+   }
+}

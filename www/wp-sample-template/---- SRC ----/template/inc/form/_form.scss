@@ -1,0 +1,319 @@
+
+// Форма заказа
+// ---------------------------------------------------------------------------- //
+
+.form {
+	width: 100%;
+
+	@include res(l) {
+		font-size: 115%;
+	}
+
+	&__wrap {
+		position: relative;
+	}
+
+	&__close {
+		color: c(cb, lighten);
+		@include icon-before("\\e821",0);
+		display: none;
+		width: 38px;
+		height: 38px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		border: 0;
+		outline: 0;
+
+		&:hover {
+			color: c(cb, base);
+		}
+	}
+
+	&__row {
+		@include row(l-b-row m-s-column);
+		align-items: center;
+		justify-content: center;
+		flex-wrap: nowrap !important;
+
+		&--dos {
+			align-items: flex-end;
+			justify-content: center;
+			@include res(l-b) {
+				margin-bottom: $gap*2;
+			}
+		}
+		&--price-all,
+		&--order,
+		&--dos {
+			border-top: groove transparentize( c(cw, lighten), .7 ) 2px;
+			@include row(row);
+			@include res(m-s) {
+				flex-wrap: wrap !important;
+			}
+			.form__item {
+				@include col(m-s-6);
+				@include res(m-s) {
+					margin: 0;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	&__title {
+		text-align: center;
+		padding: $gap 0 0 0;
+		margin: 0;
+		font-size: 26px;
+		line-height: $line-height;
+		font-weight: normal;
+		color: c(cb, light);
+		text-transform: uppercase;
+	}
+
+	&__label {
+		display: block;
+		font-weight: 300;
+		color: c(cb, lighten);
+
+		&--price-all {
+			@include icon-after("\\e867");
+		}
+
+		@include res(l-b) {
+			white-space: nowrap;
+		}
+		@include res(s) {
+			text-align: center;
+		}
+	}
+
+	&__input-bg,
+	&__textarea {
+		width: 100%;
+      @include input-wrap;
+	}
+
+
+
+	// ---------------------------------------------------------------------------- //
+
+	&__textarea {
+		outline: none;
+		color: c(cb, light);
+		white-space: normal;
+      border: 0;
+		@include input-wrap;
+		padding: .5rem;
+	}
+
+		&__input {
+         @include input;
+		}
+
+	&__select {
+		width: 100%;
+		font-weight: 300;
+		color: c(cb, lighten);
+		border: 0;
+		@include input-wrap;
+	}
+		&__option {
+			// &--no {}
+
+			&--ok {
+				background: c(cw, dark)
+			}
+		}
+
+	&__btn-cont {
+		padding: 10px;
+      box-sizing: border-box;
+	}
+
+		// &_btn-list {}
+
+		// &__btn-cell {}
+
+			&__file {
+				padding-top: 10px;
+				font-size: 20px;
+				color: c(cb, base);
+			}
+
+			&__remove {
+				width: 18px;
+				height: auto;
+			}
+
+			&__btn-list {
+
+				.MultiFile-label {
+					@include res(l-b) {
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+			}
+
+			&__btn-submit {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				@include res(float l-b-right);
+
+				&--def {
+               @include btn(get, big);
+
+					@include icon-before("\\e820");
+				}
+
+
+				&--active {
+               @include btn(valid, big);
+
+					@include icon-before("\\e82c");
+				}
+
+
+				&--valid {
+               @include btn(valid, big);
+
+					@include icon-before("\\e80d");
+				}
+
+				&--invalid {
+               @include btn(invalid, big);
+
+					@include icon-before("\\e821");
+				}
+			}
+
+
+// Отдельные стили
+// ---------------------------------------------------------------------------- //
+
+&__item {
+	padding: $gap;
+   box-sizing: border-box;
+	width: 100%;
+
+	&--quantity {
+		flex: 1 1 10%;
+	}
+
+	&--price {
+		flex: 1 1 35%;
+	}
+
+	&--dos {
+		@include res(align-items l-center);
+		flex: 0 5;
+	}
+
+	&--map {
+		flex: 1 1;
+		white-space: nowrap;
+
+		a {
+			@include btn(gost);
+			margin: 0;
+			@include res(m-s) {
+				display: block;
+			}
+		}
+	}
+
+
+	&--price-all {
+		display: flex;
+		font-size: 21px;
+	}
+
+	&--textarea {
+		clear: both;
+	}
+}
+
+
+// Иконки
+// ---------------------------------------------------------------------------- //
+
+	&__icon {
+      @include input-icon;
+		border-right: solid 1px c(cw, dark);
+
+		// Для стандартной формы
+		&--name {
+			@include icon-before("\\e807", 0);
+		}
+
+		&--email {
+			@include icon-before("\\e87a", 0);
+		}
+
+		&--tel {
+			@include icon-before("\\e804", 0);
+		}
+	}
+
+
+// input's
+// ---------------------------------------------------------------------------- //
+	&__price-dos,
+	&__price,
+	&__quantity,
+	&__km {
+		text-align: center;
+	}
+
+	&__quantity,
+	&__km {
+		@include res(l-b) {
+			max-width: 80px;
+		}
+	}
+
+
+// Кнопки плюс и минус
+// ---------------------------------------------------------------------------- //
+&__step {
+	background: transparent;
+	border: 0;
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	width: 46px;
+	text-align: center;
+
+	&--minus {
+		@include icon-before("\\e873", 0);
+	}
+
+		&--minus-10 {
+			@include icon-before("\\e831", 0);
+		}
+
+	&--plus {
+		@include icon-before("\\e86b", 0);
+	}
+
+		&--plus-10 {
+			@include icon-before("\\e830", 0);
+		}
+
+}
+
+
+// input[type=number]
+// ---------------------------------------------------------------------------- //
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    margin: 0;
+	}
+}

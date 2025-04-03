@@ -1,0 +1,86 @@
+
+// Мета
+// ---------------------------------------------------------------------------- //
+
+.meta {
+	border-top: solid c(cw, darken) 1px;
+	color: c(cb, light);
+	font-size: 90%;
+
+	@include row(l-b-row m-s-column);
+
+	@include res(
+		align-items l-b-center /
+		justify-content l-b-_space-between
+	);
+
+	@include res(m-s) {
+		font-size: 85%;
+	}
+
+	&__cell {
+		@include res(l-b) {
+			padding: 10px 5px;
+
+			&:not(:last-child) {
+				border-right: solid c(cw, darken) 1px;
+			}
+		}
+
+		@include res(m-s) {
+			padding: 5px 5px;
+			border-bottom: solid c(cw, darken) 1px;
+		}
+
+		// &--date {}
+		// &--category {}
+		// &--tags {}
+		// &--comment {}
+		// &--edit {}
+	}
+
+	&__box {
+		display: flex;
+		align-items: center;
+	}
+
+		& &__text {
+
+			a {
+				color: c(cb, light);
+				text-decoration: none;
+
+				@include res(l) {
+					white-space: nowrap;
+				}
+			}
+		}
+
+		&__icon {
+
+			&:before {
+				margin: 0 4px 0 0;
+				color: c(cb, lighten);
+			}
+
+			 // Иконка даты
+			&--date {
+				@include icon-before("\\e889", 0);
+			}
+
+			// Иконка рубрик
+			&--category {
+				@include icon-before("\\e86e", 0);
+			}
+
+			// Иконка меток
+			&--tags {
+				@include icon-before("\\e841", 0);
+			}
+
+			// Иконка комментариев
+			&--comment {
+				@include icon-before("\\e870", 0);
+			}
+		}
+}

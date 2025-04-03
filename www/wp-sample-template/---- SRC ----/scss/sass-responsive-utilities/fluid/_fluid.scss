@@ -1,0 +1,34 @@
+@use 'sass:math';
+
+/// Создает плавный переход между двумя размерами на основе брейкпоинтов.
+///
+/// @param {Number} $size-1 - Начальный размер.
+/// @param {Number} $size-2 - Конечный размер.
+/// @param {String} $min-res-key - Ключ минимального брейкпоинта.
+/// @param {String} $max-res-key - Ключ максимального брейкпоинта.
+/// @return {String} Плавный переход между размерами.
+/// @example
+///   fluid(16px, 32px, 's', 'm'); // Возвращает плавный переход между 16px и 32px на основе брейкпоинтов 's' и 'm'
+///
+@function fluid($size-1, $size-2, $min-res-key, $max-res-key) {
+   $min-res: respond($min-res-key);
+   $max-res: respond($max-res-key);
+
+   @if ($min-res > $max-res) {
+      @error "@function fluid. минимальное разрешение: #{$min-res} больше максимального: #{$max-res}";
+   }
+
+   @if ($size-1 or $size-2 or $min-res or $max-res) <= 0 {
+      @error "@function fluid. все значения должны быть больше 0";
+   }
+
+   $ratio: math.div($size-2 - $size-1, $max-res - $min-res);
+   $ratio-vw: $ratio * 100 + 'vw';
+   $target-size: px-to-rem($size-1 - $ratio * $min-res);
+
+   @if ($size-1 < $size-2) {
+      @return clamp(#{$size-1}, #{$ratio-vw} + #{$target-size}, #{$size-2});
+   } @else {
+      @return clamp(#{$size-2}, #{$ratio-vw} + #{$target-size}, #{$size-1});
+   }
+}

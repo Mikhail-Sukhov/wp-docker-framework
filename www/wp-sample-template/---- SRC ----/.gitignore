@@ -1,0 +1,17 @@
+# Исключить node_modules
+node_modules/
+
+# Исключить конфиги vscode
+.vscode/
+
+# Исключить libs т.к. это временная папка
+libs/
+
+# Исключить файл рабочей области vscode
+---- SRC ----.code-workspace
+
+# Исключить файл настроек папки dolphin
+.directory
+
+# Но не игнорируем README
+!README.md

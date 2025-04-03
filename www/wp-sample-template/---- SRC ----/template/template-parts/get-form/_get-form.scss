@@ -1,0 +1,15 @@
+
+.content__item--get-form {
+   width: 100%;
+}
+
+// Форма Заказа
+// ---------------------------------------------------------------------------- //
+
+.get-form {
+   @include wrap;
+   margin: $gap;
+   @include res(l-b) {
+      padding: $gap*2;
+   }
+}

@@ -1,0 +1,45 @@
+
+/*******************************************************************************************************************************************\
+					||||||  ||||  ||  || ||||||      ||||  |||||  |||||| |||||| |||||| ||  ||  ||||
+					||     ||  || ||| ||   ||       ||     ||       ||     ||     ||   ||| || ||
+					||||   ||  || || |||   ||        ||||  ||||     ||     ||     ||   || ||| || |||
+					||     ||  || ||  ||   ||           || ||       ||     ||     ||   ||  || ||  ||
+					||      ||||  ||  ||   ||        ||||  |||||    ||     ||   |||||| ||  ||  ||||
+\*******************************************************************************************************************************************/
+
+// Подключение шрифтов для текста
+$font-family: "opensans", "robotoslab";
+$font-style: normal;
+// $font-style: normal, italic;
+$font-weight: 300, 400, 700;
+
+@each $font-family in $font-family {
+	@each $font-style in $font-style {
+		@each $font-weight in $font-weight {
+			@font-face {
+				font-family: #{$font-family};
+				src: url('#{$font-family}-#{$font-weight}-#{$font-style}.woff2') format('woff2'),
+					  url('#{$font-family}-#{$font-weight}-#{$font-style}.woff')  format('woff'),
+					  url('#{$font-family}-#{$font-weight}-#{$font-style}.ttf')   format('truetype');
+				font-weight: $font-weight;
+				font-style: $font-style;
+			}
+		}
+	}
+}
+
+
+// Подключение шрифтов для иконок
+@font-face {
+	font-family: "basic";
+	src: url('basic.woff2?69113049') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: fallback;
+ }
+
+// Базовый шрифт
+$base-font: 'opensans', "sans-serif", "Helvetica", "Arial";
+
+// шрифт для заголовков
+$heading-font: 'robotoslab', "Georgia", 'Times New Roman', "Times", "serif";

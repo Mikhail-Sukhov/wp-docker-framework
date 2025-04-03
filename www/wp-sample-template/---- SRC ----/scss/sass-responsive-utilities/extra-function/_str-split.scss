@@ -1,0 +1,43 @@
+/// Разделяет строку на части по заданному разделителю.
+///
+/// @param {string} $string - Исходная строка.
+/// @param {string} $separator - Разделитель.
+/// @return {list} Список частей строки.
+///
+/// @example
+///   $result: str-split("hello-world", "-");
+///   // $result: ("hello", "world");
+///
+@function str-split($string, $separator) {
+   $result: ();
+
+   // Проверяем, является ли $string строкой
+   @if type-of($string) != 'string' {
+      @error "@function str-split. Входной параметр $string(#{$string}) должен быть строкой.";
+   }
+
+   // Проверяем, является ли $separator строкой
+   @if type-of($separator) != 'string' {
+      @error "@function str-split. Входной параметр $separator(#{$separator}) должен быть строкой.";
+   }
+
+   // Находим индекс первого вхождения разделителя
+   $index: str-index($string, $separator);
+
+   // Пока разделитель найден
+   @while $index != null {
+      // Получаем подстроку от начала до символа перед разделителем
+      $item: str-slice($string, 1, $index - 1);
+      // Добавляем подстроку в результат
+      $result: append($result, $item);
+      // Обновляем строку, убирая часть до разделителя
+      $string: str-slice($string, $index + 1);
+      // Ищем следующее вхождение разделителя
+      $index: str-index($string, $separator);
+   }
+
+   // Добавляем оставшуюся часть строки в результат
+   $result: append($result, $string);
+   // Возвращаем список частей
+   @return $result;
+}

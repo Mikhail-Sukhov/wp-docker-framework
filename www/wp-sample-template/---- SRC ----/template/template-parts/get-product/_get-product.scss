@@ -1,0 +1,111 @@
+
+// Заказать продукт
+// ---------------------------------------------------------------------------- //
+.b-price {
+   @include icon-after("\\e867");
+}
+
+.get-product {
+   width: 100%;
+   @include row(l-m-row s-column);
+   @include res(justify-content l-m-center);
+
+   &__cell {
+      overflow: hidden;
+      @include res(l-b) {
+         max-width: 25%;
+      }
+      @include col(l-2 b-m-4 s-12);
+      @include row(s-row);
+
+      @include wrap;
+   }
+
+      &__figure {
+         margin: 0;
+         display: flex;
+         position: relative;
+         text-align: center;
+         align-items: center;
+         justify-content: center;
+         @include col(s-7);
+      }
+
+         &__img {
+            width: 100%;
+            filter: brightness(0.5);
+         }
+
+         &__figcaption {
+            padding: $gap*2;
+            position: absolute;
+            font-weight: normal;
+            color: c(cb, base);
+            line-height: $line-height;
+            text-shadow:
+            	-0   -2px 2px #DBDBDB,
+            	 0   -2px 2px #DBDBDB,
+            	-0    2px 2px #DBDBDB,
+            	 0    2px 2px #DBDBDB,
+            	-2px -0   2px #DBDBDB,
+            	 2px -0   2px #DBDBDB,
+            	-2px  0   2px #DBDBDB,
+            	 2px  0   2px #DBDBDB,
+            	-1px -2px 2px #DBDBDB,
+            	 1px -2px 2px #DBDBDB,
+            	-1px  2px 2px #DBDBDB,
+            	 1px  2px 2px #DBDBDB,
+            	-2px -1px 2px #DBDBDB,
+            	 2px -1px 2px #DBDBDB,
+            	-2px  1px 2px #DBDBDB,
+            	 2px  1px 2px #DBDBDB,
+            	-2px -2px 2px #DBDBDB,
+            	 2px -2px 2px #DBDBDB,
+            	-2px  2px 2px #DBDBDB,
+            	 2px  2px 2px #DBDBDB,
+            	-2px -2px 2px #DBDBDB,
+            	 2px -2px 2px #DBDBDB,
+            	-2px  2px 2px #DBDBDB,
+            	 2px  2px 2px #DBDBDB;
+
+                @include res(l) { font-size: 1.45rem;}
+                @include res(b) { font-size: 1.25rem;}
+                @include res(m-s) { font-size: 1.15rem;}
+         }
+
+      &__cont {
+         padding: 0 $gap*2 $gap*2 $gap*2;
+         @include row(column);
+         @include col(s-5);
+         align-items: center;
+      }
+
+      &__title {
+         margin: $gap 0;
+         font-weight: normal;
+         color: c(cb, base);
+         font-size: 29px;
+         line-height: $line-height;
+      }
+
+      &__price {
+         margin: $gap*2 0 0 0;
+         font-weight: bolder;
+         color: c(cb, lighten);
+         font-size: 19px;
+         line-height: $line-height;
+      }
+
+      &__price-min {
+         margin: $gap 0 0 0;
+         font-weight: normal;
+         color: c(cb, lighten);
+         font-size: 17px;
+         line-height: $line-height;
+      }
+
+      & &__btn {
+         margin: $gap*2 0;
+      }
+      // &__readmore {}
+}

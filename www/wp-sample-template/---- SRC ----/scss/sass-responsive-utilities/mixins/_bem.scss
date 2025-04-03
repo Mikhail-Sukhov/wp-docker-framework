@@ -1,0 +1,50 @@
+/// Миксин для очистки потока (clearfix).
+///
+/// @example
+///   .container {
+///     @include clearfix;
+///   }
+/// 
+@mixin clearfix {
+   &:after {
+      content: '';
+      display: table;
+      clear: both;
+   }
+}
+
+/// Миксин для добавления модификатора в БЭМ-стиле.
+///
+/// @param {String} $mod - Имя модификатора.
+/// @example
+///   .block {
+///     @include mod('active') {
+///       color: red;
+///     }
+///   }
+/// 
+@mixin mod($mod) {
+   @at-root {
+      & &--#{$mod} {
+         @content;
+      }
+   }
+}
+
+/// Миксин для добавления микса в БЭМ-стиле.
+///
+/// @param {String} $mix - Имя микса.
+/// @example
+///   .block {
+///     @include mix('.another-block') {
+///       color: blue;
+///     }
+///   }
+/// 
+@mixin mix($mix) {
+   @at-root {
+      #{unquote($mix)} & {
+         @content;
+      }
+   }
+}

@@ -1,0 +1,24 @@
+@use 'sass:math';
+
+/// Создает плавный переход с максимальным значением на основе брейкпоинта.
+///
+/// @param {Number} $size - Начальный размер.
+/// @param {String} $res-key - Ключ брейкпоинта.
+/// @param {Number} $multiplier [2] - Множитель для расчета плавного перехода.
+/// @return {String} Плавный переход с максимальным значением.
+/// @example
+///   fluid-max(16px, 'm'); // Возвращает плавный переход с максимальным значением 16px на основе брейкпоинта 'm'
+///
+@function fluid-max($size, $res-key, $multiplier: 2) {
+   $res: respond($res-key);
+
+   @if ($size or $res) <= 0 {
+      @error "@function fluid-max. все значения должны быть больше 0";
+   }
+
+   $ratio: math.div($size, $res);
+   $ratio-vw: math.div(($ratio * 100), $multiplier);
+   $target-size: px-to-rem(math.div($ratio-vw * $res, 100) * ($multiplier - 1));
+
+   @return max(#{$size}, #{$ratio-vw}#{'vw'} + #{$target-size});
+}

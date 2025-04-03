@@ -1,0 +1,41 @@
+
+// Навигация по записям
+// ---------------------------------------------------------------------------- //
+
+.post-navigation {
+	clear: both;
+	padding: $gap;
+	margin: $gap 0;
+
+	@include wrap;
+
+	.nav-links {
+		display: table;
+		padding: 10px 0;
+		width: 100%;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.nav-previous {
+		display: table-cell;
+		width: 50%;
+
+		a {
+			text-decoration: none;
+
+			@include icon-before("\\e81a");
+		}
+	}
+
+	.nav-next {
+		display: table-cell;
+		width: 50%;
+
+		a {
+			text-decoration: none;
+
+			@include icon-after("\\e81b");
+		}
+	}
+}

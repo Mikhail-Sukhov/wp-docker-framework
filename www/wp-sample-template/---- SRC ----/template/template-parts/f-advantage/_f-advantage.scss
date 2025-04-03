@@ -1,0 +1,77 @@
+
+// Услуги компании
+// ---------------------------------------------------------------------------- //
+
+.f-advantage {
+   @include row(column);
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   width: 100%;
+   padding: 5vh 0;
+
+   &__title {
+      text-align: center;
+      color: c(cw, dark);
+      font-size: clamp(29px, 3vw, 67px);
+      margin: 0 0 5vh 0;
+   }
+
+   &__row {
+      @include row;
+      @include res(align-items l-b-center);
+      justify-content: space-evenly;
+      width: 100%;
+      text-align: center;
+   }
+
+   &__cell {
+      @include col(l-m-4 s-6);
+      padding: $gap;
+      color: c(cw, darken);
+   }
+
+   &__icon {
+      font-weight: 500;
+      margin: 0;
+
+      @include res(l-b) {
+         font-size: 26px;
+      }
+
+      @include res(m-s) {
+         font-size: 21px;
+      }
+
+      &--a { @include icon-before("\\e813", 0); }
+      &--b { @include icon-before("\\e867", 0); }
+      &--c { @include icon-before("\\e80d", 0); }
+      &--d { @include icon-before("\\e83a", 0); }
+      &--e { @include icon-before("\\f299", 0); }
+      &--f { @include icon-before("\\e80b", 0); }
+
+      &:before {
+         display: flex;
+         margin: 0 auto;
+         color: c(cw, dark);
+         margin-bottom: $gap*2;
+         font-weight: normal;
+
+         justify-content: center;
+         align-items: center;
+
+         @include res(l) {
+            font-size: 120px;
+         }
+         @include res(b) {
+            font-size: 95px;
+         }
+         @include res(m) {
+            font-size: 85px;
+         }
+         @include res(s) {
+            font-size: 70px;
+         }
+      }
+   }
+}

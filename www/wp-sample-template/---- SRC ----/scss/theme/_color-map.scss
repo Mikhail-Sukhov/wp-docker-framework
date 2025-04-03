@@ -1,0 +1,101 @@
+@use "sass:math";
+
+// ---------------------------------------------------------------------------- //
+// Карта цвета
+// ---------------------------------------------------------------------------- //
+
+
+$colors__first:   #187ad2;
+//$colors__second:  invert($colors__first);
+
+$colors__second:   complement($colors__first);
+$colors__cw:       #ecf0f1;
+$colors__cb:       #333;
+$colors__valid:    #5cb85c;
+$colors__invalid:  #d5433f;
+
+$colors: (
+	first: (
+		base:    $colors__first,
+		light:   lighten($colors__first,  6%),
+		lighten: lighten($colors__first, 12%),
+		dark:    darken($colors__first,   6%),
+		darken:  darken($colors__first,  12%),
+	),
+	second: (
+		base:    $colors__second,
+		light:   lighten($colors__second,  6%),
+		lighten: lighten($colors__second, 12%),
+		dark:    darken($colors__second,   6%),
+		darken:  darken($colors__second,  12%),
+	),
+	cw: (
+		base:    $colors__cw,
+		light:   lighten($colors__cw,  8%),
+		lighten: lighten($colors__cw, 16%),
+		dark:    darken($colors__cw,   8%),
+		darken:  darken($colors__cw,  16%),
+	),
+	cb: (
+		base:    $colors__cb,
+		light:   lighten($colors__cb,  8%),
+		lighten: lighten($colors__cb, 16%),
+		dark:    darken($colors__cb,   8%),
+		darken:  darken($colors__cb,  16%),
+	),
+	valid: (
+		base:    $colors__valid,
+		light:   lighten($colors__valid,  6%),
+		lighten: lighten($colors__valid, 12%),
+		dark:    darken($colors__valid,   6%),
+		darken:  darken($colors__valid,  12%),
+	),
+	invalid: (
+		base:    $colors__invalid,
+		light:   lighten($colors__invalid,  6%),
+		lighten: lighten($colors__invalid, 12%),
+		dark:    darken($colors__invalid,   6%),
+		darken:  darken($colors__invalid,  12%),
+	),
+);
+
+
+// ---------------------------------------------------------------------------- //
+// Функции цвета
+// ---------------------------------------------------------------------------- //
+
+
+// Функция вызова цвета из карты
+// ---------------------------------------------------------------------------- //
+
+@function c( $color-name, $color-variant ) {
+	@return map-get( map-get( $colors, quote( $color-name ) ), quote( $color-variant ) );
+}
+
+
+
+// Функция smart-color
+// ---------------------------------------------------------------------------- //
+
+@function smart-color( $arg ) {
+
+	$brightness: round((red($arg) * 299) + (green($arg) * 587) + (blue($arg) * 114) / 1000);
+	$light-color: round((red(c(cw, base)) * 299) + (green(c(cw, base)) * 587) + (blue(c(cw, base)) * 114) / 1000);
+
+	@if abs($brightness) < math.div($light-color, 2) {
+		@return c(cw, base);
+	}
+
+	@else {
+		@return c(cb, base);
+	}
+}
+
+@mixin smart-bg( $background, $shadow: null ) {
+	background: $background;
+	color: smart-color( $background );
+
+	@if $shadow != null and smart-color( $background ) == c(cw, base) {
+		text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
+	}
+}

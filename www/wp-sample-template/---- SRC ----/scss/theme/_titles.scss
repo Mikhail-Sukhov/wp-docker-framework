@@ -1,0 +1,99 @@
+
+/*******************************************************************************************************************************************\
+					|||||   ||||  ||||||  ||||     |||  ||||  |||||  ||  || ||  ||
+					    || ||  || ||     ||  ||   | || ||  || ||  || || ||  ||  ||
+					  |||  |||||| ||     ||  ||  |  || ||  || |||||  ||||   || |||
+					    || ||  || ||     ||  || ||  || ||  || ||  || || ||  ||| ||
+					|||||  ||  || ||      ||||  ||  ||  ||||  |||||  ||  || ||  ||
+\*******************************************************************************************************************************************/
+
+
+@mixin title( $arg: $wrapper-title, $font: 23px ) {
+	// $wrapper-title in _vars.scss 
+	// $title-padding in _vars.scss 
+
+	font-family: $heading-font;
+	padding: $title-padding;
+	text-decoration: none;
+	margin: 0;
+	font-weight: inherit;
+	font-size: $font;
+	line-height: $line-height;
+
+	@if $arg == true {
+		background: c(first, base);
+		color: c(cw, base);
+		
+		text-shadow: -1px -1px rgba(0,0,0,0.45);
+
+		// $rad in _vars.scss 
+		border-radius: $rad $rad 0 0;
+	}
+	
+	a {
+		@if $arg == true {
+			color: inherit !important;
+		}
+		text-decoration: none;
+	}
+	@if $arg == true {
+		&:before {
+			color: c(cw, dark) !important;
+		}
+	}
+}
+
+
+// стили для заголовков лендингов
+// ---------------------------------------------------------------------------- //
+@mixin home-title {
+   font-family: $heading-font;
+	color: c(cw, base);
+	text-align: center;
+	margin: 0 0 $gap 0;
+   text-shadow: -1px -1px rgba(0, 0, 0, 0.75);
+   font-weight: normal;
+   @include res(l-b) {
+      font-size: 36px;
+		line-height: $line-height;
+   }
+   @include res(m-s) {
+      font-size: 28px;
+		line-height: $line-height;
+   }
+}
+
+
+/*******************************************************************************************************************************************\
+					|||||   ||||  ||||||  ||||     |||  ||||  |||||  ||  || ||  || 	||||||  ||||   ||||  ||||||  ||||  |||||
+					    || ||  || ||     ||  ||   | || ||  || ||  || || ||  ||  || 	||  || ||  || ||  ||   ||   ||  || ||  ||
+					  |||  |||||| ||     ||  ||  |  || ||  || |||||  ||||   || ||| 	||  || ||  || ||       ||   ||  || |||||
+					    || ||  || ||     ||  || ||  || ||  || ||  || || ||  ||| || 	||  || ||  || ||  ||   ||   ||  || ||  ||
+					|||||  ||  || ||      ||||  ||  ||  ||||  |||||  ||  || ||  || 	||  ||  ||||   ||||    ||    ||||  |||||
+\*******************************************************************************************************************************************/
+
+@mixin title-post( $arg: $wrapper-title ) {
+
+	a {
+		display: block;
+
+		@if $arg == true {
+			&:before {
+				color: c(cw, dark) !important;
+			}
+		}
+	}
+
+	@if $arg == true {
+
+		&:hover {
+			background: c(second, base);
+		}
+
+		&:active {
+			background: c(second, light);
+		}
+	} @else {
+		padding:	$title-padding;
+	}
+}

@@ -1,0 +1,86 @@
+
+// О нас
+// ---------------------------------------------------------------------------- //
+
+.b-about-us {
+   padding: $gap;
+
+   &__content {
+      @include row(l-b-row m-s-column);
+      align-items: center;
+      width: 100%;
+      @include wrap;
+      padding: $gap;
+   }
+
+   &__figure {
+      margin: 0;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      @include col(l-2 b-4 m-s-5);
+   }
+
+   &__image {
+      border-radius: $rad;
+      overflow: hidden;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+   }
+
+   &__caption {
+      padding: $gap*2;
+      position: absolute;
+      font-weight: normal;
+      color: c(cb, base);
+      line-height: $line-height;
+      
+      @include res(l) {
+         font-size: 35px;
+      }
+      @include res(b-s) {
+         font-size: 28px;
+      }
+      text-shadow:
+         -0   -2px 2px #DBDBDB,
+          0   -2px 2px #DBDBDB,
+         -0    2px 2px #DBDBDB,
+          0    2px 2px #DBDBDB,
+         -2px -0   2px #DBDBDB,
+          2px -0   2px #DBDBDB,
+         -2px  0   2px #DBDBDB,
+          2px  0   2px #DBDBDB,
+         -1px -2px 2px #DBDBDB,
+          1px -2px 2px #DBDBDB,
+         -1px  2px 2px #DBDBDB,
+          1px  2px 2px #DBDBDB,
+         -2px -1px 2px #DBDBDB,
+          2px -1px 2px #DBDBDB,
+         -2px  1px 2px #DBDBDB,
+          2px  1px 2px #DBDBDB,
+         -2px -2px 2px #DBDBDB,
+          2px -2px 2px #DBDBDB,
+         -2px  2px 2px #DBDBDB,
+          2px  2px 2px #DBDBDB,
+         -2px -2px 2px #DBDBDB,
+          2px -2px 2px #DBDBDB,
+         -2px  2px 2px #DBDBDB,
+          2px  2px 2px #DBDBDB;
+   }
+
+   &__letter {
+      color: c(second, base);
+   }
+
+   &__description {
+      @include col(l-10 b-8 m-s-7);
+   }
+
+   &__text {
+      color: c(cb, light);
+      font-size: 20px;
+   }
+}

@@ -1,0 +1,99 @@
+
+// Статьи о торфе
+// ---------------------------------------------------------------------------- //
+
+.excert-articles {
+   width: 100%;
+   padding: $gap;
+   display: flex;
+   @include row(column);
+
+   @include home-fon();
+
+   &__title {
+      @include home-title;
+   }
+
+   &__row {
+      @include row(l-m-row s-column);
+      @include res(s) {
+         align-items: center;
+      }
+   }
+
+   &__item {
+      @include col(l-m-6 s-12);
+      @include row;
+      @include wrap;
+   }
+
+   &__figure {
+      margin: 0;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      @include col(l-4 b-6 m-s-12);
+   }
+
+   &__image {
+      border-radius: $rad;
+      overflow: hidden;
+      max-width: 100%;
+      height: auto;
+   }
+
+   &__caption {
+      padding: $gap*2;
+      position: absolute;
+      font-weight: normal;
+      color: c(cb, base);
+      line-height: $line-height;
+
+      @include res(l) {
+         font-size: 35px;
+      }
+      @include res(b-s) {
+         font-size: 28px;
+      }
+      text-shadow:
+         -0   -2px 2px #DBDBDB,
+          0   -2px 2px #DBDBDB,
+         -0    2px 2px #DBDBDB,
+          0    2px 2px #DBDBDB,
+         -2px -0   2px #DBDBDB,
+          2px -0   2px #DBDBDB,
+         -2px  0   2px #DBDBDB,
+          2px  0   2px #DBDBDB,
+         -1px -2px 2px #DBDBDB,
+          1px -2px 2px #DBDBDB,
+         -1px  2px 2px #DBDBDB,
+          1px  2px 2px #DBDBDB,
+         -2px -1px 2px #DBDBDB,
+          2px -1px 2px #DBDBDB,
+         -2px  1px 2px #DBDBDB,
+          2px  1px 2px #DBDBDB,
+         -2px -2px 2px #DBDBDB,
+          2px -2px 2px #DBDBDB,
+         -2px  2px 2px #DBDBDB,
+          2px  2px 2px #DBDBDB,
+         -2px -2px 2px #DBDBDB,
+          2px -2px 2px #DBDBDB,
+         -2px  2px 2px #DBDBDB,
+          2px  2px 2px #DBDBDB;
+   }
+
+   &__content {
+      @include col(l-8 b-6 m-s-12);
+   }
+
+   &__text {
+      color: c(cb, light);
+      font-size: 20px;
+   }
+
+   &__readmore {
+      @include btn(gost);
+   }
+}

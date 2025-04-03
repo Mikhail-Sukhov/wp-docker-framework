@@ -1,0 +1,117 @@
+/// Возвращает следующий брейкпоинт после указанного.
+///
+/// @param {String} $value - Текущий брейкпоинт.
+/// @return {String} - Следующий брейкпоинт.
+///
+/// @requires {Function} respond - Функция для извлечения значения из карты брейкпоинтов.
+/// @requires {List} $respond-keys - Список ключей брейкпоинтов.
+/// @requires {List} $respond-values - Список значений брейкпоинтов.
+///
+@function respond-next($value) {
+   @return respond(
+      nth($respond-keys, index($respond-values, respond($value)) + 1)
+   );
+}
+
+/// Генерирует медиа-запросы на основе брейкпоинтов.
+///
+/// @param {List|String} $res - Брейкпоинт и значение.
+/// @param {Content} @content - CSS правила для включения в медиа-запрос.
+///
+/// @example
+///   .example {
+///       @include breakpoints(l-b) {
+///         color: red;
+///      }
+///      @include breakpoints(min-1000px) {
+///         color: blue;
+///      }
+///   }
+///
+/// @requires {Function} respond - Функция для извлечения значения из карты брейкпоинтов.
+/// @requires {Function} respond-next - Функция для получения следующего брейкпоинта.
+/// @requires {List} $respond-keys - Список ключей брейкпоинтов.
+/// @requires {List} $respond-values - Список значений брейкпоинтов.
+/// @requires {List} $respond-additional-keys - Список дополнительных ключей (например, min, max).
+///
+@mixin breakpoints($res) {
+   // Если задан пустой миксин (например, breakpoints())
+   @if not($res) {
+      @content;
+   } @else {
+      // Количество ключей карты брейкпоинтов
+      $respond-length: length($respond-keys);
+
+      // Если $res делится по разделителю '-'
+      @if length(str-split($res + '', '-')) > 1 {
+         // Определение значений из $res
+         $parts: str-split($res, '-');
+         // Получает первое значение листа $parts
+         $res-1: nth($parts, 1);
+         // Получает последнее значение листа $parts
+         $res-2: nth($parts, length($parts));
+
+         // Если оба значения есть в карте $respond (например, breakpoints(b-m))
+         @if index($respond-keys, $res-1) != null and index($respond-keys, $res-2) != null {
+            // Если $res-1 является первым значением из карты
+            @if $res-1 == nth($respond-keys, 1) {
+               // min-width: Следующее значение $res-2
+               @media (min-width: respond-next($res-2)) {
+                  @content;
+               }
+            }
+
+            // Если $res-2 является последним значением из карты
+            @else if $res-2 == nth($respond-keys, $respond-length) {
+               // max-width: $res-1
+               @media (max-width: (respond($res-1) - 1)) {
+                  @content;
+               }
+            } @else {
+               // max-width: $res-1 and min-width: Следующее значение $res-2
+               @media (max-width: (respond($res-1) - 1)) and (min-width: respond-next($res-2)) {
+                  @content;
+               }
+            }
+         }
+         // Если первое значение есть в $respond-additional-keys (например, breakpoints(min-1000px))
+         @else if index($respond-additional-keys, $res-1) != null and not unitless(to-number($res-2)) {
+            @media (#{$res-1}-width: #{$res-2}) {
+               @content;
+            }
+         }
+         // Если оба значения единицы измерения CSS
+         @else if not unitless(to-number($res-1)) and not unitless(to-number($res-2)) {
+            @media (max-width: unquote($res-1)) and (min-width: unquote($res-2)) {
+               @content;
+            }
+         } @else {
+            @error "@mixin breakpoints. Неверное значение #{$res}: #{$res-1} и #{$res-2}. Миксин должен иметь значение: breakpoints(min-1000px) или: breakpoints(l-m)";
+         }
+      }
+      // Если только одно значение и оно есть в карте $respond (например, breakpoints(b))
+      @else if length(str-split($res + '', '-')) == 1 and index($respond-keys, $res) != null {
+         // Если $res является первым значением из карты
+         @if $res == nth($respond-keys, 1) {
+            // min-width: Следующее значение после $res
+            @media (min-width: respond-next($res)) {
+               @content;
+            }
+         }
+         // Если $res является последним значением из карты
+         @else if $res == nth($respond-keys, $respond-length) {
+            // max-width: $res
+            @media (max-width: (respond($res) - 1)) {
+               @content;
+            }
+         } @else {
+            // max-width: $res and min-width: Следующее значение после $res
+            @media (max-width: (respond($res) - 1)) and (min-width: respond-next($res)) {
+               @content;
+            }
+         }
+      } @else {
+         @error "@mixin breakpoints. Неверное значение: #{$res}. Миксин должен иметь значение: breakpoints(min-1000px) или: breakpoints(l)";
+      }
+   }
+}

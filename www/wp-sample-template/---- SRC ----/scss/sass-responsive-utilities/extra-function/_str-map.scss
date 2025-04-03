@@ -1,0 +1,157 @@
+@use 'sass:math';
+
+/// Разделяет строку на части и возвращает массив с ключами или значениями.
+///
+/// @param {string|list} $input - Исходная строка или список.
+/// @param {string} $data - Тип данных для возврата ("res" для ключей, "value" для значений).
+/// @return {list} Список ключей или значений.
+///
+/// @example
+///   $result: str-split-key("l-custom m-gap", "res");
+///   // $result: ("l", "m");
+///
+///   $result: str-split-key("l-custom m-gap", "value");
+///   // $result: ("custom", "gap");
+///
+/// @requires {Function} str-split - Функция для разделения строки на части.
+/// @requires {List} $respond-keys - Список ключей брейкпоинтов.
+///
+@function str-split-key($input, $data) {
+   $result: ();
+   $parts: ();
+
+   // Проверяем, является ли $input строкой или списком
+   @if type-of($input) != 'string' and type-of($input) != 'list' {
+      @error "@function str-split-key. Входной параметр $input(#{$input}) должен быть строкой или списком.";
+   }
+
+   // Если $input строка
+   @if type-of($input) == string {
+      $parts: str-split($input, ' ');
+   } @else {
+      $parts: $input;
+   }
+
+   // Проходим по каждой части
+   @each $part in $parts {
+      // Разделяем каждую часть на подчасти, используя дефисы как разделители
+      $subparts: str-split($part, '-');
+      $key: ();
+
+      // Собираем ключи или значения в зависимости от $data
+      @each $item in $subparts {
+         @if $data == 'res' and index($respond-keys, $item) {
+            $key: append($key, $item);
+         } @else if $data == 'value' and not index($respond-keys, $item) {
+            $key: append($key, $item);
+         }
+      }
+
+      // Формируем ключ или значение
+      @if length($key) > 0 {
+         $key-first: nth($key, 1);
+         $key-last: nth($key, length($key));
+
+         @if length($key) != 1 {
+            $key: quote('#{$key-first}-#{$key-last}');
+         } @else {
+            $key: quote('#{$key-first}');
+         }
+      }
+
+      // Добавляем ключ или значение в результирующий массив
+      $result: append($result, $key);
+   }
+
+   // Возвращаем список ключей или значений
+   @return $result;
+}
+
+/// Преобразует строку в карту с учетом замены значений по шаблону.
+///
+/// @param {string|list} $input - Исходная строка или список.
+/// @param {map} $map-replacement - Карта для замены значений.
+/// @return {map} Карта с ключами и значениями.
+///
+/// @example
+///   $result: str-map("l-custom_x2 m-custom_d3");
+///   // $result: (l: 20px, m: 5px);
+///
+/// @requires {Function} str-split-key - Функция для разделения строки на ключи и значения.
+/// @requires {Function} str-split - Функция для разделения строки на части.
+/// @requires {Function} to-number - Функция для преобразования строки в число.
+///
+@function str-map($input, $map-replacement: $map-replacement) {
+   $result: ();
+   // Определяет список respond
+   $res: str-split-key($input, 'res');
+   // Определяет список значений
+   $values: str-split-key($input, 'value');
+
+   // Проверяем, что количество ключей и значений совпадает
+   @if length($res) != length($values) {
+      @error "@function str-map. Количество ключей и значений не совпадает.";
+   }
+
+   @for $i from 1 through length($res) {
+      $key: nth($res, $i);
+      $value: nth($values, $i);
+
+      // Если значений разделенных '-' больше чем 1 и строка не начинается с '_'
+      @if length(str-split($value, '-')) != 1 and str-slice($value, 1, 1) != '_' {
+         $value: str-split($value, '-');
+      }
+
+      // Если строка начинается с '_' удалить '_' и вернуть строку
+      // это нужно для защиты значений css с '-' например: res(l-b-_flex-end)
+      @if str-slice($value + '', 1, 1) == '_' {
+         $value: str-slice($value, 2);
+      }
+
+      // Приводим значение к числу
+      // Фильтруем значение по $map-replacement
+      // Используем @each так как $value список
+      $filter-values: ();
+      @each $item in $value {
+         // Ищем знак умножения "_x" или деления "_d"
+         // Разделяем по знаку умножения "_x" или деления "_d"
+         $item-list: if(length(str-split($item, '_x')) > 1, str-split($item, '_x'), str-split($item, '_d'));
+         $item: nth($item-list, 1);
+         $multiplier: nth($item-list, length($item-list));
+
+         // Проверяем, есть ли значение в карте замены
+         // Заменяем значение если есть
+         @if map-has-key($map-replacement, $item) {
+            $item: map-get($map-replacement, $item);
+         }
+
+         // Проверяем что умножение или деление было найдено
+         @if $item != $multiplier and type-of(to-number(str-slice($multiplier, 2))) == 'number' {
+            // Если найден знак умножения то умножить, если деления то поделить
+            @if str-slice($multiplier, 1, 1) == 'x' {
+               $item: $item * to-number(str-slice($multiplier, 2));
+            } @else {
+               $item: math.div($item, to-number(str-slice($multiplier, 2)));
+            }
+         }
+
+         // Записываем отфильтрованные и приведенные к числу значения
+         $filter-values: append($filter-values, to-number($item));
+      }
+      $value: $filter-values;
+
+      // Добавляем ключ и значение в результирующую карту
+      $result: map-merge(
+         $result,
+         (
+            $key: $value,
+         )
+      );
+   }
+
+   // Удаление пустых ключей
+   $result: map-remove($result, ());
+
+   // Возвращаем карту
+   @return $result;
+}

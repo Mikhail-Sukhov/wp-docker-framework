@@ -1,0 +1,60 @@
+/// Контейнер для колонок (стили).
+///
+/// @requires {Function} str-split - Функция для разделения строки.
+/// @requires {Function} str-map - Функция для преобразования строки в карту.
+/// @requires {Function} col-width - Функция для вычисления ширины колонки.
+/// @requires {Mixin} res - Миксин для создания медиа-запросов на основе брейкпоинтов.
+/// 
+/// Стили для контейнера колонок.
+///
+/// @param {String} $arg ['row'] - Направление flexbox ('row' или 'column').
+/// @example
+///   @include row-style('row');
+///   @include row-style('column');
+/// 
+@mixin row-style($arg: 'row') {
+   // Если аргумент равен 'row', устанавливаем стили для строчного контейнера
+   @if $arg == 'row' {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+   }
+   // Если аргумент равен 'column', устанавливаем стили для контейнера с вертикальным направлением
+   @else if $arg == 'column' {
+      display: flex;
+      flex-direction: column;
+   }
+   // Если аргумент не 'row' и не 'column', выводим сообщение об ошибке
+   @else {
+      @error "@mixin row-style. Некорректное значение #{$arg}, $arg - 'row' или 'column'";
+   }
+}
+
+/// Контейнер для колонок.
+///
+/// @param {String|Map} $arg ['row'] - Направление flexbox или карта настроек для разных брейкпоинтов.
+/// @example
+///   @include row((l: row, b-m: column, s: row ));
+///   @include row;
+///   @include row(column);
+///   @include row(l-row b-m-column s-row );
+/// 
+@mixin row($arg: 'row') {
+   // Если аргумент не является картой и содержит только один элемент, применяем стили для контейнера
+   @if type-of($arg) != 'map' and length(str-split($arg + '', '-')) == 1 {
+      @include row-style($arg);
+   }
+   // В противном случае, обрабатываем аргумент как карту или преобразуем строку в карту
+   @else {
+      @if type-of($arg) != 'map' {
+         $arg: str-map($arg);
+      }
+
+      // Применяем стили для каждого ключа и значения в карте
+      @each $key, $value in $arg {
+         @include res($key) {
+            @include row-style('#{$value}');
+         }
+      }
+   }
+}

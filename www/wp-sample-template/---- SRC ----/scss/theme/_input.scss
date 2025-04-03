@@ -1,0 +1,38 @@
+
+// Формы ввода
+// ---------------------------------------------------------------------------- //
+
+@mixin input-wrap {
+	display: inline-flex;
+	padding: $gap*1.5 0;
+	border: solid c(cw, darken) 1px;
+	background: c(cw, light);
+	box-sizing: border-box;
+}
+
+@mixin input {
+	padding: 0 5px;
+	box-sizing: border-box;
+
+	width: calc(100% - 35px);
+	flex: 0 1 auto;
+
+	outline: 0;
+	border: 0;
+	background: transparent;
+	color: c(cb, light);
+}
+
+@mixin input-icon {
+	width: 35px;
+	flex: 1 0 35px;
+	outline: 0;
+	border: 0;
+	background: transparent;
+	color: c(first, dark);
+	text-align: center;
+
+	&:hover {
+		color: c(second, dark);
+	}
+}

@@ -1,0 +1,48 @@
+
+// Календарь
+// ---------------------------------------------------------------------------- //
+
+.calendar_wrap {
+
+	table {
+		margin: 0 auto;
+		border-collapse: collapse;
+
+		th, td {
+			padding: 5px;
+			text-align: center;
+		}
+
+		caption {
+			margin: 0 0 7px 0;
+			font-weight: bolder;
+		}
+	}
+
+		thead {
+			border: solid c(cw, darken) 1px;
+			border-width: 1px 1px 0 1px;
+			background: c(cw, dark);
+
+			// th {}
+		}
+
+		tbody {
+
+			td {
+				border: solid c(cw, darken) 1px;
+
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+
+		tfoot {
+			td {
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+}

@@ -1,0 +1,48 @@
+
+// Меню подвала
+// ---------------------------------------------------------------------------- //
+
+.footer {
+	ul.menu {
+		position: relative;
+		display: table;
+		padding: 0;
+		margin: 0;
+
+		li {
+			list-style: none;
+			position: relative;
+			white-space: nowrap;
+
+			&:not(:last-child) {
+				border-bottom: solid c(first, darken) 1px;
+			}
+
+			// &.current > a {}
+
+			// Ссылки
+			a {
+				padding: 5px;
+				display: block;
+				font-size: 16px;
+				text-decoration: none;
+
+				// убирает базовую иконку есть есть установленная классом меню
+				&:has(span)::before {
+					content: '';
+					margin: 0;
+				}
+
+				// базовая иконка
+				@include icon-before("\\e81b");
+
+				// &:hover {}
+			}
+
+			// 2, 3 уровень
+			ul {
+				display: none;
+			}
+		}
+	}
+}

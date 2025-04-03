@@ -1,0 +1,25 @@
+
+// Поиск
+// ---------------------------------------------------------------------------- //
+
+.m-search {
+	@include wrap;
+
+	margin: $gap 0 $gap 0;
+
+	&__title {
+		@include title;
+	}
+
+	&__box {
+		padding: $gap;
+	}
+
+		&__result {
+			margin: 10px 0 0 0;
+		}
+
+		// &__mess {}
+
+			// &__err {}
+}

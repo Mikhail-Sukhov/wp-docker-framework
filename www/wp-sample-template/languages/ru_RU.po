@@ -1,0 +1,443 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: samplev31\n"
+"POT-Creation-Date: 2025-01-08 11:31+0300\n"
+"PO-Revision-Date: 2025-01-08 11:33+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-KeywordsList: ;esc_html__;$esc_html__;__;esc_html_e;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: ---- SRC ----\n"
+
+#: 404.php:20 inc/breabcrumbs/breabcrumbs.php:18
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: 404.php:22
+msgid "The page you requested could not be found"
+msgstr "Страница на которую вы пытаетесь перейти не найдена"
+
+#: 404.php:25
+msgid "Try switching to"
+msgstr "Попробуйте перейти на"
+
+#: 404.php:25
+msgid "Main page"
+msgstr "Главная страница"
+
+#: comments.php:17
+msgid "Enter the password"
+msgstr "Введите пароль"
+
+#: comments.php:35
+msgid "Comments"
+msgstr "Комментарии"
+
+#: comments.php:51
+msgid "Please"
+msgstr "Пожалуйста"
+
+#: comments.php:51
+msgid "register"
+msgstr "зарегистрируйтесь"
+
+#: comments.php:51
+msgid "to comment."
+msgstr "для комментирования"
+
+#: comments.php:56
+msgid "Post a comment"
+msgstr "Опубликовать комментарий"
+
+#: comments.php:63
+msgid "Hello"
+msgstr "Здравствуйте"
+
+#: comments.php:111
+msgid "Comments on this post are closed!"
+msgstr "Комментарии к этой записи закрыты!"
+
+#: content-table.php:5 widget/latestNews/latestNews.php:36
+#: widget/loginForm/loginForm.php:70
+msgid "Heading"
+msgstr "Заголовок"
+
+#: content-table.php:6
+msgid "Category"
+msgstr "Категория"
+
+#: content-table.php:7
+msgid "Tags"
+msgstr "Метки"
+
+#: content-table.php:8
+msgid "Date"
+msgstr "Дата"
+
+#: content.php:45 template-parts/material/material--glide.php:75
+msgid "Readmore..."
+msgstr "Подробнее..."
+
+#: content.php:109 template-parts/material/material--glide.php:95
+msgid "There are no posts"
+msgstr "Постов нет"
+
+#: customizer.php:11 customizer.php:12
+msgid "Theme settings"
+msgstr "Настройки темы"
+
+#: customizer.php:19
+msgid "General settings"
+msgstr "Общие настройки"
+
+#: customizer.php:28 customizer.php:36
+msgid "Slogan"
+msgstr "Слоган"
+
+#: customizer.php:51 customizer.php:82
+msgid "Phone number"
+msgstr "Номер(*)"
+
+#: customizer.php:67 customizer.php:97
+msgid "Phone number href"
+msgstr "Ссылка для телефона"
+
+#: customizer.php:112
+msgid "Mail"
+msgstr "Почта"
+
+#: customizer.php:119
+msgid "7 Stroiteley Street"
+msgstr "Ул. Строителей, д. 7"
+
+#: customizer.php:127
+msgid "Address"
+msgstr "Адрес"
+
+#: customizer.php:141
+msgid "Address script"
+msgstr "Скрипт адреса"
+
+#: customizer.php:156
+msgid "Contact href"
+msgstr "Ссылка для контактов"
+
+#: customizer.php:163
+msgid "Camomile LLC"
+msgstr "ООО Ромашка"
+
+#: customizer.php:171
+msgid "Firm"
+msgstr "Фирма"
+
+#: customizer.php:178
+msgid "Some text about firm"
+msgstr "Какой-то текст о фирме"
+
+#: customizer.php:185
+msgid "About firm"
+msgstr "О фирме"
+
+#: customizer.php:192
+msgid "Homepage Settings"
+msgstr "Настройка домашней страницы"
+
+#: customizer.php:206 customizer.php:265 customizer.php:324 customizer.php:383
+msgid "Page Template"
+msgstr "Настройка страниц"
+
+#: customizer.php:209 customizer.php:268 customizer.php:327 customizer.php:386
+msgid "Blog"
+msgstr "Блог"
+
+#: customizer.php:210 customizer.php:269 customizer.php:328 customizer.php:387
+msgid "Table"
+msgstr "Таблица"
+
+#: customizer.php:225 customizer.php:284 customizer.php:343 customizer.php:402
+msgid "Number of posts"
+msgstr "Количество постов"
+
+#: customizer.php:237 customizer.php:296 customizer.php:355 customizer.php:414
+msgid "Blog columns"
+msgstr "Колонок в блоге"
+
+#: customizer.php:251
+msgid "Search Page Settings"
+msgstr "Настройки страницы поиска"
+
+#: customizer.php:310
+msgid "Category Page Settings"
+msgstr "Настройки категорий"
+
+#: customizer.php:369
+msgid "Archive Page Settings"
+msgstr "Настройки архивов"
+
+#: customizer.php:430
+msgid "Services"
+msgstr "Услуги"
+
+#: customizer.php:447
+msgid "Services labels"
+msgstr "Метки услуг"
+
+#: customizer.php:448
+msgid "Array of service labels"
+msgstr "Массив меток услуг"
+
+#: customizer.php:516
+msgid "Name of the service"
+msgstr "Имя услуги"
+
+#: customizer.php:529
+msgid "Service image"
+msgstr "Изображение услуги"
+
+#: customizer.php:546
+msgid "Service href"
+msgstr "Ссылка услуги"
+
+#: customizer.php:561
+msgid "Price of services"
+msgstr "Цена услуги"
+
+#: customizer.php:576
+msgid "Service description"
+msgstr "Описание услуги"
+
+#: functions.php:455
+msgid "Left sidebar"
+msgstr "Левый сайдбар"
+
+#: functions.php:456
+msgid "Sidebar for the left column"
+msgstr "Сайдбар для левой колонки"
+
+#: functions.php:467
+msgid "Left combined sidebar"
+msgstr "Левый комбинированный сайдбар"
+
+#: functions.php:468
+msgid "Sidebar for the left combined column"
+msgstr "Сайдбар для левой комбинированной колонки"
+
+#: functions.php:479
+msgid "The right sidebar"
+msgstr "Правый сайдбар"
+
+#: functions.php:480
+msgid "Sidebar for the right column"
+msgstr "Сайдбар для правой колонки"
+
+#: functions.php:491
+msgid "Right combined sidebar"
+msgstr "Правый комбинированный сайбрар"
+
+#: functions.php:492
+msgid "Sidebar for the right combined column"
+msgstr "Сайдбар для правой комбинированной колонки"
+
+#: functions.php:503
+msgid "Footer sidebar 1"
+msgstr "Сайдбар подвала 1"
+
+#: functions.php:504
+msgid "Footer sidebar first line"
+msgstr "Первая линия сайдбара подвала"
+
+#: functions.php:515
+msgid "Footer sidebar 2"
+msgstr "Сайдбар подвала 2"
+
+#: functions.php:516
+msgid "Footer  sidebar second line"
+msgstr "Вторая линия сайдбара подвала"
+
+#: functions.php:532
+msgid "Mobile menu"
+msgstr "Мобильное меню"
+
+#: functions.php:533
+msgid "Top header menu"
+msgstr "Верхнее меню шапки"
+
+#: functions.php:534
+msgid "Fixed top header menu"
+msgstr "Фиксированное верхнее меню шапки"
+
+#: functions.php:535
+msgid "Bottom header menu"
+msgstr "Нижнее меню шапки"
+
+#: inc/breabcrumbs/breabcrumbs.php:16
+msgid "Home"
+msgstr "Главная"
+
+#: inc/breabcrumbs/breabcrumbs.php:17
+#, php-format
+msgid "Page %d"
+msgstr "Страница %d"
+
+#: inc/breabcrumbs/breabcrumbs.php:19
+#, php-format
+msgid "Search results for - <b>%s</b>"
+msgstr "Результаты поиска по запросу - <b>%s</b>"
+
+#: inc/breabcrumbs/breabcrumbs.php:20
+#, php-format
+msgid "Author archive: <b>%s</b>"
+msgstr "Архив автора: <b>%s</b>"
+
+#: inc/breabcrumbs/breabcrumbs.php:21
+#, php-format
+msgid "Archive for <b>%d</b>"
+msgstr "Архив за <b>%d</b> год"
+
+#: inc/breabcrumbs/breabcrumbs.php:22
+#, php-format
+msgid "Archive for: <b>%s</b>"
+msgstr "Архив за: <b>%s</b>"
+
+#: inc/breabcrumbs/breabcrumbs.php:24
+#, php-format
+msgid "Media: %s"
+msgstr "Медиа: %s"
+
+#: inc/breabcrumbs/breabcrumbs.php:25
+#, php-format
+msgid "Posts by tag: <b>%s</b>"
+msgstr "Записи по метке: <b>%s</b>"
+
+#: inc/breabcrumbs/breabcrumbs.php:26
+#, php-format
+msgid "%1$s from \"%2$s\" by tag: <b>%3$s</b>"
+msgstr "%1$s из \"%2$s\" по тегу: <b>%3$s</b>"
+
+#: inc/form/form.php:23
+msgid "Order"
+msgstr "Заказ"
+
+#: inc/form/form.php:42
+msgid "Contact information(*)"
+msgstr "Контактная информация(*)"
+
+#: inc/form/form.php:55
+msgid "Email(*)"
+msgstr "Ел.Почта(*)"
+
+#: inc/form/form.php:68
+msgid "Phone number(*)"
+msgstr "Номер(*)"
+
+#: inc/form/form.php:81
+msgid "Comments on the order:"
+msgstr "Комментарии к заказу:"
+
+#: inc/form/form.php:87
+msgid "Product(*):"
+msgstr "Продукт(*)"
+
+#: inc/form/form.php:89
+msgid "Select a product:"
+msgstr "Выберите продукт:"
+
+#: inc/form/form.php:105
+msgid "Quantity(*):"
+msgstr "Кол-во(*)"
+
+#: inc/form/form.php:120
+msgid "Total:"
+msgstr "Итого:"
+
+#: inc/form/form.php:132
+msgid "Get Order"
+msgstr "Заказать"
+
+#: inc/s-login/s-login.php:16
+msgid "Get Post"
+msgstr "Добавить пост"
+
+#: inc/s-login/s-login.php:19
+msgid "Profile"
+msgstr "Профиль"
+
+#: inc/s-login/s-login.php:22
+msgid "Out"
+msgstr "Выход"
+
+#: inc/s-login/s-login.php:30
+msgid "Login"
+msgstr "Логин"
+
+#: inc/s-login/s-login.php:34
+msgid "Password"
+msgstr "Пароль"
+
+#: inc/s-login/s-login.php:38
+msgid "Log in"
+msgstr "Войти"
+
+#: inc/s-login/s-login.php:41
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+#: inc/s-login/s-login.php:42
+msgid "Registration"
+msgstr "Регистрация"
+
+#: search.php:15
+msgid "You were looking for:"
+msgstr "Вы искали:"
+
+#: search.php:23
+msgid "Search Results:"
+msgstr "Результаты поиска:"
+
+#: search.php:37
+msgid "The search did not produce any results"
+msgstr "Поиск не дал никаких результатов"
+
+#: searchform.php:14
+msgid "Search"
+msgstr "Поиск"
+
+#: widget/latestNews/latestNews.php:15 widget/latestNews/latestNews.php:16
+msgid "Latest news"
+msgstr "Последние новости"
+
+#: widget/latestNews/latestNews.php:47
+msgid "Number of news items"
+msgstr "Количество постов"
+
+#: widget/latestNews/latestNews.php:59
+msgid "Select the category"
+msgstr "Выберете категорию"
+
+#: widget/latestNews/latestNews.php:69
+msgid "Show an Image"
+msgstr "Показывать изображения"
+
+#: widget/latestNews/latestNews.php:77
+msgid "Yes"
+msgstr "Да"
+
+#: widget/latestNews/latestNews.php:86
+msgid "No"
+msgstr "Нет"
+
+#: widget/loginForm/loginForm.php:15 widget/loginForm/loginForm.php:16
+msgid "Login Form"
+msgstr "Форма входа"
+
+#~ msgid "The text of the \"Log in\" button"
+#~ msgstr "Текст кнопки \"Войти\""
+
+#~ msgid "The text of the \"Log out\" button"
+#~ msgstr "Текст кнопки \"Выйти\""

@@ -1,0 +1,73 @@
+
+// Footer
+// ---------------------------------------------------------------------------- //
+
+.footer {
+	margin: $gap*2 0 0 0;
+
+	&__row {
+		@include row;
+
+		border-top: solid c(cw, darken) 1px;
+
+		.footer__cell:nth-last-child(1):first-child,
+		.footer__cell:nth-last-child(1):first-child ~ .footer__cell {
+			@include col(12);
+		}
+
+		.footer__cell:nth-last-child(2):first-child,
+		.footer__cell:nth-last-child(2):first-child ~ .footer__cell {
+			@include col(l-b-6 m-s-12);
+		}
+
+		.footer__cell:nth-last-child(3):first-child,
+		.footer__cell:nth-last-child(3):first-child ~ .footer__cell {
+			@include col(l-b-4 m-s-12);
+		}
+
+		.footer__cell:nth-last-child(4):first-child,
+		.footer__cell:nth-last-child(4):first-child ~ .footer__cell {
+			@include col(l-b-3 m-6 s-12);
+		}
+	}
+
+	@include res(l-b) {
+		&__cell {
+			&:not(:last-child) {
+				border-right: solid c(cw, darken) 1px;
+			}
+		}
+	}
+
+	@include res(s) {
+		&__cell {
+			&:not(:last-child) {
+				border-bottom: solid c(cw, darken) 1px;
+			}
+		}
+	}
+
+		&__box {
+			padding: 0 $gap*2;
+		}
+
+		&__title {
+			font-size: 21px;
+			margin: 0;
+		}
+}
+
+:where(.footer) {
+	p {
+		margin: $gap 0 0 0;
+	}
+}
+
+// Копирайт
+// ---------------------------------------------------------------------------- //
+
+.copy {
+	&__txt {
+		text-align: center;
+	}
+}

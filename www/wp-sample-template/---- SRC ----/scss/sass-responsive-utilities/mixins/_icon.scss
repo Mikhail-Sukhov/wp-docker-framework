@@ -1,0 +1,65 @@
+/// Переменная для отступа иконок.
+///
+/// @type Number
+$icon-margin: 7px;
+
+/// Миксин для добавления иконки.
+///
+/// @param {String} $icon - Код иконки.
+/// @example
+///   .icon-class {
+///     @include icon(''\\e800'');
+///   }
+/// 
+@mixin icon($icon) {
+   font-family: 'basic';
+   font-style: normal;
+   text-decoration: inherit;
+   font-variant: normal;
+   text-transform: none;
+   $quote1: '"';
+   $quote2: '"';
+   content: #{$quote1}#{$icon}#{$quote2};
+}
+
+/// Миксин для добавления иконки перед элементом.
+///
+/// @param {String} $icon-before - Код иконки.
+/// @param {Number} $icon-before-margin [7px] - Отступ справа от иконки.
+/// @example
+///   .icon-before-class {
+///     @include icon-before(''\\e800'', 10px);
+///   }
+/// 
+@mixin icon-before($icon-before, $icon-before-margin: $icon-margin) {
+   &:before {
+      @include icon($icon-before);
+
+      @if $icon-before-margin != 0 {
+         margin-right: $icon-before-margin;
+      }
+
+      @content;
+   }
+}
+
+/// Миксин для добавления иконки после элемента.
+///
+/// @param {String} $icon-after - Код иконки.
+/// @param {Number} $icon-after-margin [7px] - Отступ слева от иконки.
+/// @example
+///   .icon-after-class {
+///     @include icon-after(''\\e800'', 10px);
+///   }
+/// 
+@mixin icon-after($icon-after, $icon-after-margin: $icon-margin) {
+   &:after {
+      @include icon($icon-after);
+
+      @if $icon-after-margin != 0 {
+         margin-left: $icon-after-margin;
+      }
+
+      @content;
+   }
+}

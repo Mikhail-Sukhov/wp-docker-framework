@@ -1,0 +1,107 @@
+
+/*******************************************************************************************************************************************\
+					||   |  ||||  |||||| ||  ||  ||||
+					||   | ||  || ||  || || ||  ||  ||
+					|| | | |||||| ||  || ||||   ||||||
+					|| | | ||  || ||  || || ||  ||  ||
+					|||||| ||  || ||  || ||  || ||  ||
+\*******************************************************************************************************************************************/
+
+@mixin header-padding() {
+
+	// $header-padding-block in _vars.scss
+	// $content-top-margin in _vars.scss
+
+   padding-top: $header-padding-block;
+
+   @if ($content-top-margin) <= 0 {
+      padding-bottom: $header-padding-block + abs($content-top-margin);
+   }
+   @else {
+      padding-bottom: $header-padding-block;
+   }
+}
+
+
+.header {
+	position: relative;
+	@include header-padding;
+
+	&__row {
+		@include row;
+		align-items: center;
+
+		@include res(l-b) {
+			padding: 0 2.5%;
+		}
+	}
+
+	&__cell {
+		@include col(l-b-6 m-s-12, 0);
+
+		@include res(m-s) {
+			padding: 0 10px;
+		}
+
+		// &--logo {}
+		&--cont {
+			@include row(column);
+			flex-wrap: wrap;
+			@include res(align-content l-b-_flex-end m-s-_center);
+		}
+	}
+}
+
+
+
+/*******************************************************************************************************************************************\
+					|||||     |||  ||||  ||  || ||  ||      ||   |  ||||  |||||| ||  || ||  ||
+					||       | || ||  || || ||  ||  ||      ||   | ||  || ||  || || ||  ||  ||
+					|||||   |  || ||  || ||||   || |||      || | | |||||| ||  || ||||   || |||
+					||  || ||  || ||  || || ||  ||| ||      || | | ||  || ||  || || ||  ||| ||
+					|||||  ||  ||  ||||  ||  || ||  ||      |||||| ||  || ||  || ||  || ||  ||
+\*******************************************************************************************************************************************/
+
+.logo {
+	display: flex;
+	@include row(l-b-row m-s-column);
+	align-items: center;
+	text-decoration: none;
+	
+	&__img {
+		line-height: 0;
+		max-width: 100%;
+		height: auto;
+
+		width: 180px;
+	}
+
+	&__slogan {
+		font-weight: normal;
+		margin: $gap;
+	}
+}
+
+
+.header-cont {
+
+	&__href {
+		display: block;
+		text-decoration: none;
+		font-weight: lighter;
+		font-size: 24px;
+		line-height: 1.5;
+
+		// &--tel {}
+		// &--mail {}
+		// &--adress {}
+	}
+
+}
+
+
+.searchform {
+	@include mix(header) {
+		margin-top: 20px;
+	}
+}

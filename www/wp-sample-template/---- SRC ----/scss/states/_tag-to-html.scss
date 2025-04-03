@@ -1,0 +1,136 @@
+
+// wordpress images
+// ---------------------------------------------------------------------------- //
+@mixin post-img {
+	& {
+		font-weight: 300;
+		text-align: center;
+		font-style: italic;
+		font-size: 17px;
+	}
+
+	@include res(l-m) {
+		margin-top: $text-gap;
+		margin-bottom: $text-gap;
+		margin-left: $gap;
+		margin-right: $gap;
+	}
+
+	@include res(s) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}
+
+.post__text {
+	.aligncenter {
+		@include post-img;
+	}
+
+	.alignright {
+		@include res(float l-m-right);
+		@include post-img;
+	}
+
+	.alignleft {
+		@include res(float l-m-left);
+		@include post-img;
+	}
+}
+
+
+// wordpress gallery
+// ---------------------------------------------------------------------------- //
+.post__text {
+	.gallery {
+		margin-top: $gap*2;
+		margin-bottom: $gap*2;
+		display: flex;
+		flex-wrap: wrap;
+		gap: $gap;
+
+		&-caption {
+			text-align: center;
+			font-weight: 300;
+			font-style: italic;
+			font-size: 16px;
+		}
+
+		&-item {
+			margin: 0;
+		}
+
+		&-columns-1 {
+			flex-wrap: nowrap;
+		}
+		&-columns-2 .gallery-item {flex: 0 0 calc(50% - $gap);}
+		&-columns-3 .gallery-item {flex: 0 0 calc(33.3333% - $gap);}
+		&-columns-4 .gallery-item {flex: 0 0 calc(25% - $gap);}
+		&-columns-5 .gallery-item {flex: 0 0 calc(20% - $gap);}
+		&-columns-6 .gallery-item {flex: 0 0 calc(16.6666% - $gap);}
+		&-columns-7 .gallery-item {flex: 0 0 calc(14.2857% - $gap);}
+		&-columns-8 .gallery-item {flex: 0 0 calc(12.5% - $gap);}
+		&-columns-9 .gallery-item {flex: 0 0 calc(11.1111% - $gap);}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+	}
+}
+
+
+// Класс для иконочного шрифта
+// ---------------------------------------------------------------------------- //
+[class^="icon-"]:before, [class*=" icon-"]:before {
+   font-family: "basic";
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: inherit;
+   font-variant: normal;
+   text-transform: none;
+}
+
+
+// Для тестирования цветов
+// ---------------------------------------------------------------------------- //
+@each $color-name, $color-variants in $colors {
+	@each $variant, $value in $color-variants {
+		.#{$color-name}-#{$variant} {
+			outline: none;
+			height: 75px;
+			background: c($color-name, $variant);
+
+			&:before {
+				$quote: '"';
+				content: #{$quote}#{c($color-name, $variant)}#{$quote};
+				color: smart-color( c($color-name, $variant) );
+			}
+		}
+	}
+}
+
+
+// Для ngg
+// ---------------------------------------------------------------------------- //
+.post__text .ngg-galleryoverview {
+	margin-top: $gap*2;
+	margin-bottom: $gap*2;
+}
+
+
+// Для vbox
+// ---------------------------------------------------------------------------- //
+.vbox-container {
+	.form__wrap {
+		display: inherit !important;
+	}
+}
+
+html {
+	.vbox-overlay {
+		--vbox-max-width: 900px !important;
+	}
+}

@@ -1,0 +1,95 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+/// Проверяет, установлена ли переменная `base-column` в Theme.
+///
+/// @type Number
+$import-base-column: if(
+   meta.global-variable-exists('base-column'),
+   $base-column,
+   12
+);
+
+/// Значение по умолчанию для переменной `column-setting`.
+$column-setting: null;
+
+/// Миксин для установки настроек колонок.
+///
+/// @param {Number} $column [$import-base-column] - Количество колонок.
+/// @param {Number} $default [$import-base-column] - Значение по умолчанию для количества колонок.
+/// @example
+///   // Вернет переменную с настройками колонок
+///   @include column-setting()
+///
+///   // Установит произвольное кол-во колонок в пределах миксина
+///   @include column-setting(10) {
+///     a {
+///       width: col-width(5); // width: 50%;
+///     }
+///   }
+///
+///   a {
+///     width: col-width(5); // 41.6666666667%
+///   }
+///
+@mixin column-setting(
+   $column: $import-base-column,
+   $default: $import-base-column
+) {
+   $column-setting: $column !global;
+   @content;
+   $column-setting: $default !global;
+}
+
+@include column-setting();
+
+/// Извлечение значения ширины колонок.
+///
+/// @param {mixed} $arg - Значение для вычисления ширины колонки.
+/// @param {Number} $column [$column-setting] - Количество колонок.
+/// @return {number} Ширина колонки.
+/// @example
+///   col-width(6);       // Возвращает 50%
+///   col-width('6/12');  // Возвращает 50%
+///   col-width(6/12);    // Возвращает 50%
+///   col-width(200px);   // Возвращает 200px
+///   col-width('200px'); // Возвращает 200px
+///
+/// @requires {Function} to-number - Функция для преобразования строки в число.
+/// @requires {Function} str-split - Функция для разделения строки.
+///
+@function col-width($arg, $column: $column-setting) {
+   // Если значение число, не имеет единицы измерения и больше или равно 1
+   // Значит получено число колонок от $col-setting: column
+   //@if type-of($arg) == 'number' or and unitless($arg) and $arg >= 1 {
+   @if type-of(to-number($arg)) ==
+      'number' and
+      unitless(to-number($arg)) and
+      to-number($arg) >=
+      1
+   {
+      @return to-number($arg) * (math.div(100%, $column));
+   }
+   // Если значение число, не имеет единицы измерения и меньше 1
+   // Значит получена колонка от пользовательского column, например: col-width(5/10)
+   @if type-of($arg) == 'number' and unitless($arg) and $arg < 1 {
+      @return $arg * (math.div(100%, $column));
+   }
+   // Если делится по '/'
+   // Значит получена колонка от пользовательского column как string, например: col-width('5/10')
+   @else if length(str-split($arg + '', '/')) > 1 {
+      // Разделяем строку на части по разделителю '/'
+      $parts: str-split($arg, '/');
+      $res-1: to-number(nth($parts, 1));
+      $res-2: to-number(nth($parts, 2));
+
+      @return math.div($res-1, $res-2) * 100%;
+   }
+   // Если значение имеет единицу измерения
+   // Значит пользователь ввел единицу измерения, например: col-width(1000px)
+   @else if not unitless(to-number($arg)) {
+      @return $arg;
+   } @else {
+      @error "@function col-width. Значение #{$arg}, должна быть - выражение, типа: '6/20', целое число (1..12), или значение, типа: 1000px";
+   }
+}

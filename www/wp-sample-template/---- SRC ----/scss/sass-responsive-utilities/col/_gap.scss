@@ -1,0 +1,26 @@
+@use 'sass:meta';
+
+/// Проверяет, установлена ли переменная `gap` в Theme.
+///
+/// @type Number
+$import-gap: if(meta.global-variable-exists('gap'), $gap, 8px);
+
+// Значение по умолчанию для переменной `gap`.
+$gap: $import-gap;
+
+/// Миксин для установки настроек отступов.
+///
+/// @param {Number} $gap [$import-gap] - Значение отступа.
+/// @param {Number} $default [$import-gap] - Значение по умолчанию для отступа.
+/// @example
+///   @include gap(10px) {
+///     // стили в которых нужно чтобы $gap был заданное значение
+///   }
+///
+@mixin gap($gap: $import-gap, $default: $import-gap) {
+   $gap: $gap !global;
+   @content;
+   $gap: $default !global;
+}
+
+@include gap();

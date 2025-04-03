@@ -1,0 +1,70 @@
+// Форма входа
+// ---------------------------------------------------------------------------- //
+
+.s-login {
+
+	// &__form {}
+
+		&__log {
+			width: 100%;
+			margin: $gap*0.5 0;
+         @include input-wrap;
+		}
+
+			&__icon-log {
+				@include input-icon;
+
+				&:before {
+					@include icon("\\e80c");
+				}
+			}
+
+			&__input {
+            border-left: solid c(cw, darken) 1px;
+				@include input;
+			}
+
+		&__pwd {
+			width: 100%;
+			margin: $gap*0.5 0;
+         @include input-wrap;
+		}
+
+			&__icon-pwd {
+				@include input-icon;
+
+				&:before {
+					@include icon("\\e853");
+				}
+			}
+
+			&__input {
+         	border-left: solid c(cw, darken) 1px;
+				@include input;
+			}
+
+		&__submit {
+         @include btn();
+			@include icon-before("\\e81f");
+		}
+
+	&__advenced {
+		display: block;
+		margin-top: $gap;
+	}
+
+	&__href {
+
+		&--post-new {
+			@include icon-before("\\e872");
+		}
+
+		&--profile {
+			@include icon-before("\\e80c");
+		}
+
+		&--out {
+			@include icon-before("\\e846");
+		}
+	}
+}

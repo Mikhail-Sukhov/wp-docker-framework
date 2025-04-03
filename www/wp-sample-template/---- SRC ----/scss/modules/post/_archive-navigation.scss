@@ -1,0 +1,44 @@
+
+// Навигация
+// ---------------------------------------------------------------------------- //
+
+.navigation {
+	clear: both;
+}
+
+
+
+// Навигация по страницам
+// ---------------------------------------------------------------------------- //
+.pagination {
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+
+	.nav-links {
+		display: inline-block;
+		text-align: center;
+		white-space: normal;
+		font-weight: 350;
+		font-size: 23px;
+
+		border-radius: $rad;
+
+		.page-numbers {
+			width: 35px;
+			height: 35px;
+			vertical-align: middle;
+			text-decoration: none;
+			line-height: 1.7;
+			cursor: pointer;
+			padding: 0;
+			border-radius: $rad;
+
+			@include btn;
+		}
+
+		.current {
+			color: c(cw, dark);
+		}
+	}
+}

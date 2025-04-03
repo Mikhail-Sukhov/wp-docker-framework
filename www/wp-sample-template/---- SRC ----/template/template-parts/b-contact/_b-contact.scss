@@ -1,0 +1,63 @@
+
+.content__item--contact {
+   width: 100%;
+   margin: $gap auto;
+}
+
+// Контакты
+// ---------------------------------------------------------------------------- //
+
+.contact {
+   @include row(l-m-row s-column);
+   width: 100%;
+
+   &__cell {
+      @include wrap;
+      padding: $gap*2;
+
+      &--map {
+         overflow: hidden;
+         @include col(l-b-8 m-7 s-12);
+      }
+      &--txt {
+         @include col(l-b-3 m-5 s-12);
+      }
+   }
+
+      &__titles {
+         margin: 0 0 $gap*2 0;
+         font-weight: normal;
+         font-size: 29px;
+         line-height: $line-height;
+         color: c(cb, light);
+      }
+
+      &__titles-min {
+         margin: $gap 0 0 0;
+         font-weight: bolder;
+         font-size: 20px;
+         line-height: $line-height;
+         color: c(cb, lighten);
+      }
+
+         & &__txt {
+            color: c(cb, lighten);
+
+            &--tel {
+               @include icon-before("\\e803");
+            }
+            &--mail {
+               @include icon-before("\\e820");
+            }
+            &--adress-office {
+               @include icon-before("\\e84d");
+            }
+
+            &:before {
+               width: 21px;
+               text-align: center;
+               display: inline-block;
+            }
+         }
+
+}

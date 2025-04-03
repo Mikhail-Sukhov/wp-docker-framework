@@ -1,0 +1,38 @@
+/// Карта брейкпоинтов для медиа-запросов.
+///
+/// @type Map
+///
+$respond: (
+   l: null,
+   b: 1200px,
+   m: 960px,
+   s: 520px,
+);
+
+/// Функция для извлечения значения из карты брейкпоинтов.
+/// и Единиц измерения css
+///
+/// @param {String} $value - Ключ брейкпоинта.
+/// @return {Number} - Значение брейкпоинта.
+/// @example
+///   respond('b');      // Возвращает 1200px
+///   respond('1000px'); // Возвращает 1000px
+///
+@function respond($value) {
+   @if map-has-key($respond, $value) {
+      @return map-get($respond, $value);
+   } @else if not unitless($value) {
+      @return $value;
+   } @else {
+      @error "@function respond. значение(#{$value}) должно соответствовать: #{$respond-keys}";
+   }
+}
+
+// Сбор ключей карты брейкпоинтов
+$respond-keys: map-keys($respond);
+
+// Сбор значений карты брейкпоинтов
+$respond-values: map-values($respond);
+
+// Ключи для дополнительного функционала res
+$respond-additional-keys: max, min;

@@ -1,0 +1,38 @@
+
+// Последние новости
+// ---------------------------------------------------------------------------- //
+
+.latestNews {
+
+	&__item {}
+
+		& &__href {
+			display: flex;
+			align-items: center;
+		}
+
+		&__image {
+			line-height: 0;
+			flex: 0 1 30%;
+			padding-right: $gap;
+		}
+
+			&__img {
+				border-radius: $rad*0.5;
+				box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+				max-width: 100%;
+				height: auto;
+			}
+
+		&__title {
+			flex: 0 1 70%;
+
+			&:hover {
+				color: c(second, light);
+			}
+
+			&--current {
+				color: c(second, dark);
+			}
+		}
+}

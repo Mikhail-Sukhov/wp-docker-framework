@@ -1,0 +1,159 @@
+
+// comment
+// ---------------------------------------------------------------------------- //
+
+.m-comment {
+	padding: $gap;
+
+	margin: $gap 0;
+
+	@include wrap;
+
+	&__list {
+
+		// &-title {}
+
+		ul {
+			margin: 0;
+			display: block;
+		}
+
+		li.comment {
+			list-style: none;
+
+			margin-top: $gap;
+			margin-bottom: $gap;
+		}
+
+			.comment-body {
+				padding-left: $gap;
+				padding-right: $gap;
+
+				border: solid c(cw, darken) 1px;
+			}
+
+				// .comment-meta {}
+
+					.comment-author.vcard {
+						display: table;
+
+						margin-top: $gap;
+						margin-bottom: $gap;
+					}
+
+						.avatar {
+							vertical-align: middle;
+							display: table-cell;
+						}
+
+						.fn {
+							padding-left: $gap;
+							vertical-align: middle;
+							display: table-cell;
+						}
+
+						.says {
+							vertical-align: middle;
+							display: table-cell;
+						}
+
+					// .comment-metadata {
+					// 	a {}
+					// }
+
+				// .comment-content {
+				// 	p {}
+				// }
+
+				.reply {
+					a.comment-reply-link {
+						@include btn;
+					}
+				}
+	}
+
+	&__form {
+		display: table;
+		margin-left: auto;
+		margin-right: auto;
+
+		max-width: 570px;
+		width: 100%;
+	}
+
+		// &__reply {}
+		// &__err-mes {}
+		// &__form-title {}
+		// &__hello-mes {}
+
+		&__input {
+			@include input;
+			border-left: solid c(cw, darken) 1px;
+		}
+
+		&__author {
+			width: 100%;
+
+			margin-top: $gap;
+			margin-bottom: $gap;
+			@include input-wrap;
+		}
+
+			&__icon-author {
+				@include input-icon;
+
+				@include icon-before("\\e80f", 0);
+			}
+
+		&__email {
+			width: 100%;
+
+			margin-top: $gap;
+			margin-bottom: $gap;
+			@include input-wrap;
+		}
+
+			&__icon-mail {
+				@include input-icon;
+
+				@include icon-before("\\e80a", 0);
+			}
+
+		&__url {
+			margin-top: $gap;
+			margin-bottom: $gap;
+
+			width: 100%;
+			@include input-wrap;
+		}
+
+			&__icon-url {
+				@include input-icon;
+
+				@include icon-before("\\e878", 0);
+			}
+
+		&__textarea {
+			margin-top: $gap;
+			margin-bottom: $gap;
+			padding: $gap;
+
+			min-height: 135px;
+			width: 100%;
+			outline: 0;
+
+			@include input-wrap;
+		}
+
+		// &__btn-cell {}
+
+			&__submit {
+				margin-left: auto;
+				margin-right: auto;
+
+				@include btn(gost);
+			}
+
+	// &__err-mes {}
+
+}

@@ -1,0 +1,112 @@
+
+// Мобильное меню
+// ---------------------------------------------------------------------------- //
+
+.mobile-menu {
+	@include res(display l-none);
+
+	&__checkbox ~ &__box {
+		display: none;
+	}
+
+	&__checkbox:checked ~ &__box {
+		display: block;
+	}
+
+	&__label {
+		display: table;
+		padding: 10px 20px;
+		width: 100%;
+		font-size: 30px;
+		line-height: 1;
+
+		&:before {
+			content: "Меню";
+			float: left;
+		}
+
+		&:after {
+			@include icon(\e816);
+			float: right;
+		}
+	}
+
+	&__box {
+
+		// 1 уровень
+		ul.menu {
+			white-space: nowrap;
+			position: relative;
+			padding: 0;
+			margin: 0;
+
+			// отступ 1 уровень
+			> li > a:before {
+				width: 40px;
+				content: "− ";
+			}
+
+			li {
+				position: relative;
+				list-style: none;
+				display: block;
+
+				&:not(:last-child) {
+					border-bottom: solid c(first, darken) 1px;
+				}
+
+				a {
+					text-decoration: none;
+					padding: 5px 10px;
+					display: block;
+					font-size: 22px;
+				}
+
+				// &.current > a {}
+
+				// Родительский маркер
+				&.parent > a {
+					&:after {
+						@include icon(\e831);
+						position: absolute;
+						top: 0;
+						right: 0;
+						background: rgba(0,0,0,0.5);
+						padding: 10px 13px;
+					}
+					&:hover:after {
+						color: red;
+					}
+				}
+
+				// 2 уровень
+				ul {
+					display: none;
+					margin: 0;
+					padding: 0;
+
+					// отступ 2 урвень
+					> li > a:before {
+						width: 80px;
+						content: "− − ";
+					}
+
+					li {
+						&:first-child {
+							border-top: solid c(first, darken) 1px;
+						}
+
+						// 3 уровень
+						ul {
+							// отступ 3 уровень
+							> li > a:before {
+								width: 114px;
+								content: "− − − ";
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,161 @@
+
+// Горизонтальное меню
+// ---------------------------------------------------------------------------- //
+
+.topmenu {
+	height: $topmenu-height;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	&--fixed {
+		//position: absolute;
+		width: 100%;
+		opacity: 0;
+		transition: opacity 400ms;
+		z-index: 99998;
+
+		
+		&__top {
+			opacity: 1;
+		}
+		
+		&__visible {
+			position: fixed;
+			opacity: 1;
+		}
+	}
+	
+
+	&__box {
+		width: 100%;
+	}
+
+	@include res(display b-s-none);
+
+	// 1 уровень
+	ul.menu {
+		white-space: nowrap;
+		padding: 0;
+		margin: 0;
+		display: flex;
+
+		li {
+			position: relative;
+			list-style: none;
+
+			&:not(:last-child) {
+				border-right: solid c(first, darken) 1px;
+			}
+
+			// Эффект при раскрытии подменю
+			&.parent:hover > ul {
+				visibility: visible;
+				opacity: 1;
+			}
+
+			// Ссылки
+			a {
+				padding: 0 10px;
+				line-height: $topmenu-height;
+				height: $topmenu-height;
+				display: block;
+				font-size: 22px;
+				text-decoration: none;
+				
+				// &:hover {}
+			}
+
+			// &.current > a {}
+
+			// Родительский маркер
+			&.parent > a {
+				@include icon-after("\\e831");
+
+				&:hover:after {
+					color: red;
+				}
+			}
+
+			// 2 уровень
+			ul {
+				visibility: hidden;
+				opacity: 0;
+
+				// Эффект при раскрытии подменю
+				padding: 0;
+				margin: 0;
+				z-index: 1000;
+				background: transparent;
+				position: absolute;
+				top: 100%;
+				border-top: solid 10px transparent;
+
+				// уголок ul ul
+				&:before {
+					content: '';
+					display: inline-block;
+					border-left: 7px solid transparent;
+					border-right: 7px solid transparent;
+					border-bottom: 7px solid c(first, darken);
+					position: absolute;
+					top: -7px;
+					left: 9px;
+				}
+
+				>li {
+					float: none;
+					background: c(first, dark);
+					border-left:  solid c(first, darken) 1px;
+					border-right: solid c(first, darken) 1px;
+					border-top:   solid c(first, darken) 1px;
+
+					// Закругленные углы
+					&:first-child {
+						border-radius: $rad $rad 0 0;
+
+						>a {
+							border-radius: $rad $rad 0 0;
+						}
+					}
+
+					&:last-child {
+						border-radius: 0 0 $rad $rad;
+						border-bottom: solid c(first, darken) 1px;
+						>a {
+							border-radius: 0 0 $rad $rad;
+						}
+					}
+
+					// Родительский маркер
+					&.parent > a {
+						@include icon-after("\\e81b");
+
+						&:hover:after {
+							color: red;
+						}
+					}
+
+					// 3 уровень
+					ul {
+						top: 1px;
+						left: 100%;
+						border-top: 0;
+						border-left: solid 10px transparent;
+
+						// уголок ul ul ul
+						&:before {
+							content: '';
+							display: inline-block;
+							border: 7px solid transparent;
+							border-right: 7px solid c(first, darken);
+							position: absolute;
+							top: 10px;
+							left: -14px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,90 @@
+
+// О Торфе
+// ---------------------------------------------------------------------------- //
+
+.about-product {
+   @include row(l-m-row s-column);
+   align-items: center;
+   width: 100%;
+
+   &--all {
+      @include row(l-b-row m-s-column);
+      @include col(l-m-6 s-12);
+      align-items: center;
+      width: 100%;
+   }
+
+   &__figure {
+      margin: 0;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+   }
+
+   &__cell {
+      overflow: hidden;
+
+      &--img {
+         @include col(l-b-4 m-5 s-12);
+      }
+      &--txt {
+         @include col(l-b-8 m-7 s-12);
+         @include wrap;
+         padding: $gap*2;
+      }
+
+   }
+
+      &__img {
+         width: 100%;
+      }
+      &__figcaption {
+         padding: $gap*2;
+         position: absolute;
+         @include res(l-b) {
+            font-size:75px;
+            line-height: $line-height;
+         }
+         @include res(m-s) {
+            font-size: 55px;
+            line-height: $line-height;
+         }
+         font-weight: normal;
+         color: c(cb, base);
+         text-shadow:
+            -0   -2px 2px #DBDBDB,
+             0   -2px 2px #DBDBDB,
+            -0    2px 2px #DBDBDB,
+             0    2px 2px #DBDBDB,
+            -2px -0   2px #DBDBDB,
+             2px -0   2px #DBDBDB,
+            -2px  0   2px #DBDBDB,
+             2px  0   2px #DBDBDB,
+            -1px -2px 2px #DBDBDB,
+             1px -2px 2px #DBDBDB,
+            -1px  2px 2px #DBDBDB,
+             1px  2px 2px #DBDBDB,
+            -2px -1px 2px #DBDBDB,
+             2px -1px 2px #DBDBDB,
+            -2px  1px 2px #DBDBDB,
+             2px  1px 2px #DBDBDB,
+            -2px -2px 2px #DBDBDB,
+             2px -2px 2px #DBDBDB,
+            -2px  2px 2px #DBDBDB,
+             2px  2px 2px #DBDBDB,
+            -2px -2px 2px #DBDBDB,
+             2px -2px 2px #DBDBDB,
+            -2px  2px 2px #DBDBDB,
+             2px  2px 2px #DBDBDB;
+      }
+
+      & &__txt {
+         font-size: 20px;
+         color: c(cb, light);
+      }
+      & &__readmore {
+         @include btn(gost);
+      }
+}
